@@ -1,0 +1,24 @@
+<!--pages/relationship/relationship.wxml-->
+<scroll-view>
+  <view style="height: 40rpx;"></view>
+  <text class="title">关系绑定</text>
+  <view class="box" wx:for="{{2 - 0}}" wx:key="unique">
+    <view class="top">
+      <view class="left">
+        <image style="width: 160rpx;border-radius: 50%;" src="/static/img/avatar.jpg" mode="widthFix"/>
+      </view>
+      <view class="right">
+        <text class="id">
+          id：xxxxxxxx
+        </text>
+        <text class="text">
+          xxx请求与你绑定家长关系
+        </text>
+      </view>
+    </view>
+    <view class="bottom">
+      <button>同意</button>
+      <button>拒绝</button>
+    </view>
+  </view>
+</scroll-view>

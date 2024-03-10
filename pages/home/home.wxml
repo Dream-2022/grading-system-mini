@@ -11,35 +11,35 @@
   </view>
 
   <view class="function">
-    <view class="little">
+    <view class="little" bind:tap="toWrong">
       <view style="color:#ff7675" class="iconfont icon-book"></view>
       <text>错题集</text>
     </view>
-    <view class="little">
+    <view class="little" bind:tap="toPaper">
       <view style="color:#fdcb6e" class="iconfont icon-catalog-check"></view>
       <text>去查分</text>
     </view>
-    <view class="little">
+    <view class="little" bind:tap="toAnalysis">
       <view style="color:#55efc4" class="iconfont icon-Analisis"></view>
       <text>学情分析</text>
     </view>
-    <view class="little">
+    <view class="little" bind:tap="toRelationship">
       <view style="color:#a29bfe" class="iconfont icon-chart-relationship"></view>
       <text>关系绑定</text>
     </view>
-    <view class="little">
+    <view class="little" bind:tap="toAI">
       <view style="color:#a29bfe" class="iconfont icon-wuguan"></view>
       <text>AI刷题</text>
     </view>
-    <view class="little">
+    <view class="little" bind:tap="toNotice">
       <view style="color:#55efc4" class="iconfont icon-notice"></view>
       <text>通知</text>
     </view>
-    <view class="little">
+    <view class="little" bind:tap="toHistory">
       <view style="color:#fdcb6e" class="iconfont icon-paperstack"></view>
       <text>历史试题</text>
     </view>
-    <view class="little">
+    <view class="little" bind:tap="toMy">
       <view style="color:#ff7675" class="iconfont icon-information"></view>
       <text>个人信息</text>
     </view>

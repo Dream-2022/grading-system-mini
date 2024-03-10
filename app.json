@@ -2,7 +2,13 @@
   "pages": [
     "pages/home/home",
     "pages/paper/paper",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/relationship/relationship",
+    "pages/notice/notice",
+    "pages/wrong/wrong",
+    "pages/history/history",
+    "pages/analysis/analysis",
+    "pages/ai/ai"
   ],
   "tabBar": {
     "list": [
