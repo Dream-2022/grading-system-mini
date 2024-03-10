@@ -1,1 +1,83 @@
 /* pages/my/my.wxss */
+.myBigBox{
+  background-color: #EBEFFE;
+  padding: 30rpx 45rpx;
+}
+.myBoxTop{
+  padding: 55rpx 80rpx;
+  background-color: #fff;
+  border-radius: 30rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+}
+.myBoxTopDetail1{
+  flex: 9;
+}
+.myBoxTopDetail2{
+  flex: 15;
+}
+.myBoxTopDetailName{
+  font-size: 32rpx;
+  margin-top: 30rpx;
+}
+.myBoxTopDetailID{
+  font-size: 22rpx;
+}
+
+.myBoxBottom{
+  padding: 30rpx 35rpx;
+  background-color: #fff;
+  border-radius: 30rpx;
+}
+.myBoxBottomTitle1{
+  color: #476DF4;
+}
+.myBoxBottomTitle2{
+  color: #476DF4;
+  margin-top: 25rpx;
+  margin-bottom: 25rpx;
+}
+.myAvatarBox,.myNameBox,.myEmailBox{
+  display: flex;
+  font-size: 26rpx;
+  padding: 10rpx 0;
+  line-height: 60rpx;
+}
+.myAvatarBox{
+  line-height: 60rpx;
+  margin-top: 20rpx;
+  padding-bottom: 0;
+}
+.myBoxDetail1{
+  flex: 2;
+}
+.myBoxDetail2{
+  flex: 6;
+}
+.myBoxDetail3{
+  color: rgb(155, 152, 152);
+  flex: 1.5;
+}
+.myBoxRelates{
+  min-height: 160rpx;
+  margin-bottom: 100rpx;
+}
+.myBoxRelate{
+  font-size: 26rpx;
+  display: flex;
+  line-height: 60rpx;
+}
+.myBoxRelateUsername{
+  flex: 4;
+}
+.myBoxImage{
+  flex: 6;
+}
+.myBoxExitBox{
+  display: flex;
+  justify-content: center;
+}
+.myBoxExit{
+  color: #476DF4;
+  font-size: 26rpx;
+}

@@ -1,1 +1,86 @@
 /* pages/paper/paper.wxss */
+.myPaperBox{
+  font-size: 28rpx;
+  padding-top: 20rpx;
+  margin-left: 20rpx;
+  margin-bottom: 20rpx;
+}
+.flexBox{
+  display: flex;
+  margin-bottom: 30rpx;
+}
+.searchBox{
+  margin-left: 20rpx;
+  display: flex;
+  padding: 2rpx;
+  padding-left: 12rpx;
+  height: 45rpx;
+  width: 300rpx;
+  border-radius: 12rpx;
+  border: 1rpx solid #ccc;
+}
+.myinputSearch{
+  padding: 2rpx;
+  padding-left: 5rpx;
+  width: 300rpx;
+  border-radius: 12rpx;
+  border: 1rpx solid red;
+}
+.myinputState{
+  margin-left: 20rpx;
+  border: 1rpx solid #ccc;
+  height: 40rpx;
+  padding: 2rpx;
+  padding-left: 12rpx;
+  width: 300rpx;
+  border-radius: 12rpx;
+}
+
+.paperBox{
+  background-color: #EBEFFE;
+  padding: 25rpx 30rpx 30rpx 30rpx;
+  margin: 15rpx 20rpx;
+  border-radius: 25rpx;
+}
+.paperBoxTitle{
+  color: #3A63F3;
+  font-weight: 600;
+  margin-bottom: 25rpx;
+}
+.paperBoxDetail1{
+  color:rgb(95, 95, 95);
+  margin-bottom: 15rpx;
+}
+.paperBoxDetail2{
+  color:rgb(138, 138, 138);
+  font-size: 22rpx;
+  margin-bottom: 15rpx;
+}
+.teacherBox{
+  display: flex;
+}
+.paperBoxTeacher,.paperBoxZi{
+  margin-bottom: 15rpx;
+}
+.paperBoxScore,.paperBoxZi2{
+  margin-bottom: 15rpx;
+  font-size: 30rpx;
+}
+.stateBox{
+  display: flex;
+}
+.paperBoxState,.paperBoxTime{
+  color:rgb(138, 138, 138);
+  font-size: 25rpx;
+  margin-top: 20rpx;
+}
+.paperBoxTime{
+  margin-left: 25rpx;
+}
+.paperBoxSee{
+  color:#3A63F3;
+  font-size: 25rpx;
+  margin-top: 20rpx;
+  margin-right: 15rpx;
+  margin-left: auto;
+}

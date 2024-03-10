@@ -1,2 +1,56 @@
 <!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
+<view class="myBigBox">
+  <view class="myBoxTop">
+    <view class="myBoxTopDetail1">
+      <image style="width: 140rpx; margin-top: 5rpx; margin-right: 10rpx; border-radius: 100rpx;" mode="widthFix" src='../../static/img/abc.jpeg'></image>
+    </view>
+    <view class="myBoxTopDetail2">
+      <view class="myBoxTopDetailName">李小慧</view>
+      <view class="myBoxTopDetailID">ID：1235154453623</view>
+    </view>
+  </view>
+  <view class="myBoxBottom">
+    <view>
+      <view class="myBoxBottomTitle1">个人信息</view>
+      <view>
+        <view class="myAvatarBox">
+          <view class="myBoxDetail1">头像</view>
+          <view class="myBoxDetail2">
+            <image style="width: 60rpx; margin-top: 5rpx; margin-right: 10rpx; border-radius: 100rpx;" mode="widthFix" src='../../static/img/abc.jpeg'></image>
+          </view>
+          <view class="myBoxDetail3">修改 ></view>
+        </view>
+        <view class="myNameBox">
+          <view class="myBoxDetail1">名称</view>
+          <view class="myBoxDetail2">lizeyan</view>
+          <view class="myBoxDetail3">修改 ></view>
+        </view>
+        <view class="myEmailBox">
+          <view class="myBoxDetail1">邮箱</view>
+          <view class="myBoxDetail2">45476545645@qq.com</view>
+          <view class="myBoxDetail3">修改 ></view>
+        </view>
+      </view>
+    </view>
+    <view>
+      <view class="myBoxBottomTitle2">关系绑定</view>
+      <view class="myBoxRelates">
+        <view class="myBoxRelate">
+          <view class="myBoxRelateUsername">12341352135</view>
+          <view class="myBoxImage">
+            <image style="width: 60rpx; margin-top: 5rpx; margin-right: 10rpx; border-radius: 100rpx;" mode="widthFix" src='../../static/img/abc.jpeg'></image>
+          </view>
+        </view>
+        <view class="myBoxRelate">
+          <view class="myBoxRelateUsername">12341352135</view>
+          <view class="myBoxImage">
+            <image style="width: 60rpx; margin-top: 5rpx; margin-right: 10rpx; border-radius: 100rpx;" mode="widthFix" src='../../static/img/abc.jpeg'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="myBoxExitBox">
+      <view class="myBoxExit">退出登录</view>
+    </view>
+  </view>
+</view>

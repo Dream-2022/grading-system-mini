@@ -1,2 +1,44 @@
 <!--pages/paper/paper.wxml-->
-<text>pages/paper/paper.wxml</text>
+<view>
+  <view class="myPaperBox">
+    <text class="myPaper">我的试卷</text>
+  </view>
+  <view>
+    <view class="flexBox">
+      <view class="searchBox">
+        <image style="width: 50rpx; margin-top: 5rpx; margin-right: 10rpx;" mode="widthFix" src='../../static/tabar/search.png'></image>
+        <input  class="myinput" placeholder="搜索" value="{{search}}"/>
+      </view>
+      <view>
+        <input class="myinputState" placeholder="批改状态" value="{{state}}"/>
+      </view>
+    </view>
+  </view>
+  <view class="paperBoxes">
+    <view class="paperBox">
+      <view class="paperBoxTitle">XX市第一次月考</view>
+      <view class="paperBoxDetail1">您的试卷正在批阅中，请耐心等待</view>
+      <view class="teacherBox">
+        <view class="paperBoxZi">批改人：</view>
+        <view class="paperBoxTeacher">XXX老师</view>
+      </view>
+      <view class="stateBox">
+        <view class="paperBoxState">进行中</view>
+        <view class="paperBoxSee">查看 ></view>
+      </view>
+    </view>
+    <view class="paperBox">
+      <view class="paperBoxTitle">XX市第一次月考</view>
+      <view class="paperBoxDetail2">评语：史蒂夫哈师大GIFu啊红烧冬瓜覅us哈代发iu哈斯都会覅苏火锅店几乎sdafasdf</view>
+      <view class="teacherBox">
+        <view class="paperBoxZi2">分数：98分</view>
+        <view class="paperBoxScore">满分：150分</view>
+      </view>
+      <view class="stateBox">
+        <view class="paperBoxState">已结束</view>
+        <view class="paperBoxTime">2024-12-02 12:22</view>
+        <view class="paperBoxSee">查看 ></view>
+      </view>
+    </view>
+  </view>
+</view>
