@@ -1,1 +1,63 @@
 /* pages/home/home.wxss */
+
+.top{
+  border-bottom: 2rpx solid #e5e5e5;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+ 
+}
+
+.top view {
+  color:#0037ff;
+  display: flex;
+  align-items: center;
+  margin-left: 50rpx;
+}
+
+.top image{
+  margin-right: 50rpx;
+}
+
+.function{
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-top: 60rpx;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap:60rpx;
+}
+
+.function .little{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 150rpx;
+}
+
+.function .little view{
+  height: 80rpx;
+  width: 80rpx;
+}
+
+.function .little text{
+  font-size: 24rpx;
+}
+
+.myParents{
+  display: flex;
+  justify-content: space-between;
+  margin-top:40rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  height: 120rpx;
+  /* background-color: #0037ff; */
+  line-height: 120rpx;
+  color:#0037ff;
+}
+
+.myParents .avatars image:nth-child(2)
+{
+  transform: translateX(-20rpx);
+}
