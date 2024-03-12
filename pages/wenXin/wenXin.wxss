@@ -63,7 +63,6 @@
 .myinput{
   width: 95%;
   height: 100rpx;
-  min-height: 60rpx;
   overflow-x: hidden;
   overflow-y: auto;
   box-sizing: border-box;

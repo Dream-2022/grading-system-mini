@@ -32,7 +32,7 @@
         </view>
       </view>
     </view>
-    <view>
+    <view class="myBoxRelateBottom">
       <view class="myBoxBottomTitle2">关系绑定</view>
       <view class="myBoxRelates">
         <view class="myBoxRelate">
