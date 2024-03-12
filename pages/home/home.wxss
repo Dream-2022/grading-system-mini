@@ -61,3 +61,21 @@
 {
   transform: translateX(-20rpx);
 }
+@font-face {
+  font-family: "iconfont"; /* Project id 4462250 */
+  src: url('//at.alicdn.com/t/c/font_4462250_wpkrlt2l1p.woff2?t=1710158784918') format('woff2'),
+       url('//at.alicdn.com/t/c/font_4462250_wpkrlt2l1p.woff?t=1710158784918') format('woff'),
+       url('//at.alicdn.com/t/c/font_4462250_wpkrlt2l1p.ttf?t=1710158784918') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 40px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-baiduwxyy:before {
+  content: "\e612";
+}

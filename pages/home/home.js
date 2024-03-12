@@ -26,9 +26,9 @@ Page({
       }
     })
   },
-  toAI:function toAI(){
+  toWenXin:function toWenXin(){
     wx.navigateTo({
-      url: '/pages/ai/ai',
+      url: '/pages/wenXin/wenXin',
       success:function(res){
       },
       fail:function(error){

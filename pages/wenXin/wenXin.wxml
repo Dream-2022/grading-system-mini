@@ -1,0 +1,28 @@
+<view>
+  <view>
+    <view class="top">
+      <view>
+        <image style="width: 70rpx;" mode="widthFix" src='../../static/tabar/wencopy.png'></image>
+        <text class="projectName">文心一言</text>
+      </view>
+    </view>
+    <view class="wenxinDialogue">
+      <view class="AIDialogueBox">
+        <view class="AITime">21:12</view>
+        <view class="AIDialogue">你好，请问有什么可以帮您！</view>
+      </view>
+      <view class="peopleDialogueBox">
+        <view class="peopleTime">21:12</view>
+        <view class="peopleDialogue">你好，请问有什么可以帮您！</view>
+      </view>
+    </view>
+    <view class="bottom">
+      <view style="color:#a29bfe" class="iconfont icon-refresh i1"></view>
+      <view class="content">
+        <textarea  class="myinput" placeholder="有问题尽管问我" value="{{search}}"  :autosize="{ minRows: 1, maxRows: 5 }" :rows="defaultRows" v-model="inputValue"/>
+        <view style="color:#a29bfe" class="iconfont icon-a-liebiao-yuyinshuruVoiceinput i2"></view>
+      </view>
+      <view style="color:#a29bfe" class="iconfont icon-pictures i3"></view>
+    </view>
+  </view>
+</view>

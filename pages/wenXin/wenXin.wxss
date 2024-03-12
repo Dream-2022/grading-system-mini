@@ -1,0 +1,110 @@
+/* pages/analysis/analysis.wxss */
+
+.top{
+  border-bottom: 2rpx solid #e5e5e5;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.top view {
+  color:#0037ff;
+  display: flex;
+  align-items: center;
+  margin-left: 40rpx;
+}
+
+.top image{
+  margin-right: 25rpx;
+}
+.wenxinDialogue{
+  overflow-y:auto;
+}
+.AITime,.peopleTime{
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: center;
+  color: rgb(170, 170, 170);
+  font-size: 26rpx;
+}
+.AIDialogue{
+  background-color: #EDEDED;
+  margin: 15rpx 20rpx 20rpx 20rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 20rpx 20rpx 20rpx 5rpx;
+}
+.peopleDialogue{
+  background-color: #EBEFFE;
+  margin: 15rpx 20rpx 20rpx 20rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 20rpx 20rpx 5rpx 20rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+.bottom{
+  padding-top: 20rpx;
+  padding-bottom: 10rpx;
+  position: fixed; /* 使元素固定 */
+  bottom: 0;
+  z-index: 1; 
+  min-height: 80rpx;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.content{
+  display: flex;
+  align-items: center;
+  padding-right: 20rpx;
+  padding-left: 20rpx;
+  display: flex;
+  padding: 5rpx 10rpx;
+}
+.myinput{
+  width: 95%;
+  height: 100rpx;
+  min-height: 60rpx;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+  color: #333;
+  /* flex-grow: 1; 使文本域占据剩余空间 */
+  /* resize: vertical; */
+}
+.i1{
+  flex: 1;
+}
+.content{
+  flex: 10;
+  background-color: #EBEFFE;
+  padding: 10rpx 15rpx;
+  border-radius: 10rpx;
+}
+.i3{
+  flex: 1;
+}
+
+@font-face {
+  font-family: "iconfont"; /* Project id 4462250 */
+  src: url('//at.alicdn.com/t/c/font_4462250_a5koqz82nk.woff2?t=1710211121434') format('woff2'),
+       url('//at.alicdn.com/t/c/font_4462250_a5koqz82nk.woff?t=1710211121434') format('woff'),
+       url('//at.alicdn.com/t/c/font_4462250_a5koqz82nk.ttf?t=1710211121434') format('truetype');
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 50rpx;
+}
+.icon-pictures:before {
+  content: "\e863";
+}
+
+.icon-a-liebiao-yuyinshuruVoiceinput:before {
+  content: "\e76b";
+}
+
+.icon-refresh:before {
+  content: "\e622";
+}

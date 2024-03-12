@@ -8,7 +8,7 @@
     "pages/wrong/wrong",
     "pages/history/history",
     "pages/analysis/analysis",
-    "pages/ai/ai"
+    "pages/wenXin/wenXin"
   ],
   "tabBar": {
     "list": [

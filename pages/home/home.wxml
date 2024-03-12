@@ -27,9 +27,9 @@
       <view style="color:#a29bfe" class="iconfont icon-chart-relationship"></view>
       <text>关系绑定</text>
     </view>
-    <view class="little" bind:tap="toAI">
-      <view style="color:#a29bfe" class="iconfont icon-wuguan"></view>
-      <text>AI刷题</text>
+    <view class="little" bind:tap="toWenXin">
+      <view style="color:#a29bfe" class="iconfont icon-baiduwxyy"></view>
+      <text>文心一言</text>
     </view>
     <view class="little" bind:tap="toNotice">
       <view style="color:#55efc4" class="iconfont icon-notice"></view>
