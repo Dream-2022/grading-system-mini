@@ -1,2 +1,28 @@
 <!--pages/wrong/wrong.wxml-->
-<text>pages/wrong/wrong.wxml</text>
+<view>
+  <view class="myWrong">
+    <view>我的错题</view>
+  </view>
+  <view class="searchBox">
+    <image style="width: 50rpx; margin-top: 5rpx; margin-right: 10rpx;" mode="widthFix" src='../../static/tabar/search.png'></image>
+    <input  class="myinput" placeholder="搜索" value="{{search}}"/>
+  </view>
+  <view class="wrongBoxes">
+    <view class="wrongBox">
+      <view class="wrongBoxTitle">XX市第一次月考</view>
+      <view class="wrongBoxDetail">1.史蒂夫哈师大GIFu啊红烧冬瓜覅us哈代发iu哈斯都会覅苏火锅店几乎sdafasdf</view>
+      <view class="stateBox">
+        <view class="wrongBoxZi">错题：5</view>
+        <view class="wrongBoxSee">查看 ></view>
+      </view>
+    </view>
+    <view class="wrongBox">
+      <view class="wrongBoxTitle">XX市第一次月考</view>
+      <view class="wrongBoxDetail">1.史蒂夫哈师大GIFu啊红烧冬瓜覅us哈代发iu哈斯都会覅苏火锅店几乎sdafasdf</view>
+      <view class="stateBox">
+        <view class="wrongBoxZi">错题：5</view>
+        <view class="wrongBoxSee">查看 ></view>
+      </view>
+    </view>
+  </view>
+</view>

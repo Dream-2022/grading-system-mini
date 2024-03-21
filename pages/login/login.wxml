@@ -1,0 +1,11 @@
+<view>
+  <text>账号：</text>
+  <input placeholder="请输入账号" value="{{username}}"  bindinput="inputUsername"/>
+</view>
+<view>
+  <text>密码：</text>
+  <input placeholder="请输入密码" value="{{password}}"  bindinput="inputPassword"/>
+</view>
+<view>
+  <button bind:tap="loginButton">确认</button>
+</view>

@@ -1,6 +1,6 @@
 <!--pages/paper/paper.wxml-->
 <view>
-  <view class="myPaperBox">
+  <view class="myPaperBox"> 
     <text class="myPaper">我的试卷</text>
   </view>
   <view>

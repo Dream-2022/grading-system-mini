@@ -17,8 +17,8 @@
       </view>
     </view>
     <view class="bottom">
-      <button>同意</button>
-      <button>拒绝</button>
+      <button bindtap="agreeButton">同意</button>
+      <button bindtap="rejectButton">拒绝</button>
     </view>
   </view>
 </scroll-view>

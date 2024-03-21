@@ -72,7 +72,15 @@ Page({
       }
     })
   },
-  
+  loginClick:function loginClick(){
+    wx.navigateTo({
+      url: '/pages/login/login',
+      success:function(res){
+      },
+      fail:function(error){
+      }
+    })
+  },
 
 
   /**

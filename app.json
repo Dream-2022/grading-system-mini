@@ -8,7 +8,8 @@
     "pages/wrong/wrong",
     "pages/history/history",
     "pages/analysis/analysis",
-    "pages/wenXin/wenXin"
+    "pages/wenXin/wenXin",
+    "pages/login/login"
   ],
   "tabBar": {
     "list": [

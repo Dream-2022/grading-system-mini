@@ -21,12 +21,34 @@ Page({
   onReady() {
 
   },
-
+  agreeButton: function(){
+    wx.showToast({
+        title: "绑定成功", // 提示的内容
+        icon: "success", // 图标，默认success
+        image: "", // 自定义图标的本地路径，image 的优先级高于 icon
+        duration: 1500, // 提示的延迟时间，默认1500
+        mask: false, // 是否显示透明蒙层，防止触摸穿透
+        success: function () {console.log("接口调用成功的回调函数");},
+        fail: function () {console.log("接口调用失败的回调函数");},
+        complete: function () {console.log("接口调用结束的回调函数（调用成功、失败都会执行）");}
+    })
+  },
+  rejectButton: function(){
+    wx.showToast({
+      title: "拒绝关系绑定", // 提示的内容
+      icon: "none", // 图标，默认success
+      image: "", // 自定义图标的本地路径，image 的优先级高于 icon
+      duration: 1500, // 提示的延迟时间，默认1500
+      mask: false, // 是否显示透明蒙层，防止触摸穿透
+      success: function () {console.log("接口调用成功的回调函数");},
+        fail: function () {console.log("接口调用失败的回调函数");},
+        complete: function () {console.log("接口调用结束的回调函数（调用成功、失败都会执行）");}
+  })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
   },
 
   /**
