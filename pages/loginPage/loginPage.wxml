@@ -1,0 +1,21 @@
+<view>
+  <view class="container">
+    <view>
+      <image style="width: 400rpx; z-index: 10;" mode="widthFix" class='loginPng' src='../../static/img/login.png'></image>
+    </view>
+    <view>
+      <view class="flexBox1">
+        <view><image class="formPng" src='../../static/img/my.png'></image></view>
+        <input class="myinput" placeholder="请输入账号" value="{{username}}" bindinput="inputUsername"/>
+      </view>
+      <view class="flexBox2">
+        <view><image class="formPng" src='../../static/img/password.png'></image></view>
+        <input class="myinput" placeholder="请输入密码" value="{{password}}" bindinput="inputPassword"/>
+      </view>
+      <view class="loginButtonBox">
+        <button class="loginButton" bind:tap="loginButton">登录</button>
+      </view>
+    </view>
+  </view>    
+  <view class="containerBox"></view>
+</view>

@@ -49,6 +49,22 @@ Page({
           data: JSON.stringify(userInfo),
           success(res) {
             console.log(res)
+            wx.showToast({
+              title: "登录成功", // 提示的内容
+              icon: "success", // 图标，默认success
+              image: "", // 自定义图标的本地路径，image 的优先级高于 icon
+              duration: 1500, // 提示的延迟时间，默认1500
+              mask: false, // 是否显示透明蒙层，防止触摸穿透
+            })
+            wx.switchTab({
+              url: '/pages/home/home',
+              success:function(res){
+                console.log(res)
+              },
+              fail:function(error){
+                console.log(error)
+              }
+            })
           }
         })
         
@@ -64,13 +80,11 @@ Page({
     wx.getStorage({
       key: "userInfo",
       success(res) {
-        console.log(JSON.parse(res.data))
         that.data.user=JSON.parse(res.data)
         console.log(that.data.user)
       }
     })
     console.log(this.data.user)
-
   },
 
   /**

@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    user:[]
   },
 
   toRelationship:function toRelationship(){
@@ -73,13 +73,23 @@ Page({
     })
   },
   loginClick:function loginClick(){
-    wx.navigateTo({
-      url: '/pages/login/login',
-      success:function(res){
-      },
-      fail:function(error){
-      }
-    })
+    if(this.data.user==null){
+      wx.navigateTo({
+        url: '/pages/loginPage/loginPage',
+        success:function(res){
+        },
+        fail:function(error){
+        }
+      })
+    }else{
+      wx.switchTab({
+        url: '/pages/my/my',
+        success:function(res){
+        },
+        fail:function(error){
+        }
+      })
+    }
   },
 
 
@@ -87,7 +97,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    var that =this
+    wx.getStorage({
+      key: "userInfo",
+      success(res) {
+        console.log(JSON.parse(res.data))
+        that.data.user=JSON.parse(res.data)
+        console.log(that.data.user)
+      }
+    })
   },
 
   /**

@@ -9,7 +9,8 @@
     "pages/history/history",
     "pages/analysis/analysis",
     "pages/wenXin/wenXin",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/loginPage/loginPage"
   ],
   "tabBar": {
     "list": [
@@ -20,19 +21,21 @@
         "selectedIconPath": "/static/tabar/home-filling.png"
       },
       {
-        "pagePath":"pages/paper/paper",
+        "pagePath": "pages/paper/paper",
         "text": "试卷",
         "iconPath": "/static/tabar/paper.png",
         "selectedIconPath": "/static/tabar/uf_paper.png"
-      },{
-        "pagePath":"pages/my/my",
+      },
+      {
+        "pagePath": "pages/my/my",
         "text": "我的",
         "iconPath": "/static/tabar/my.png",
         "selectedIconPath": "/static/tabar/my_fill.png"
-      }],
-      "color": "#ffffff",
-      "selectedColor": "#ffffff",
-      "backgroundColor": "#7990e0"
+      }
+    ],
+    "color": "#ffffff",
+    "selectedColor": "#ffffff",
+    "backgroundColor": "#7990e0"
   },
   "window": {
     "navigationBarTextStyle": "white",

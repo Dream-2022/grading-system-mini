@@ -5,37 +5,42 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    user:[],
+    paperList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    // const res = await this.getMyAllE('/examPaper/getMyAllE')
-    //       if (res) {
-    //       	console.log(res.data.data)
-    //       }   
-    wx.request({
-      // url: 'http://127.0.0.1:8080/api/pre/remark/selectRemarkByUserId', 
-      url: 'http://192.168.50.24:8084/examPaper/getAllE',
-      // data: {
-      //   userId: 1,
-      //   orderIdValue:"",
-      //   startTime:"",
-      //   endTime:""
-      // },
-      // header:{
-      //   token: '你保存的token值'
-      // },
-      method: 'GET',
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success (res) {
-        console.log(res.data)
+    var that=this
+    wx.getStorage({
+      key: "userInfo",
+      success(res) {
+        console.log(JSON.parse(res.data))
+        that.data.user=JSON.parse(res.data)
+        console.log(that.data.user)
+        sendRequestWithUserInfo(that.data.user,that)
       }
-    }) 
+    })
+    function  sendRequestWithUserInfo(userInfo,that){
+      wx.request({
+        url: 'http://192.168.50.24:8084/examPaper/getMyAllE',
+        // data: {
+        //   userId: 1
+        // },
+        header:{
+          "Authorization": userInfo.shortToken,
+          'content-type': 'application/json' // 默认值
+        },
+        method: 'GET',
+        success (res) {
+          console.log(res.data.data)
+          that.data.paperList=res.data.data
+        }
+      }) 
+    }
+    
   },
 
   /**
