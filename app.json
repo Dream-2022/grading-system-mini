@@ -10,7 +10,8 @@
     "pages/analysis/analysis",
     "pages/wenXin/wenXin",
     "pages/login/login",
-    "pages/loginPage/loginPage"
+    "pages/loginPage/loginPage",
+    "pages/ec-canvas/ec-canvas"
   ],
   "tabBar": {
     "list": [

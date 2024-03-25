@@ -10,12 +10,12 @@
   margin-bottom: 30rpx;
 }
 .searchBox{
-  margin-left: 20rpx;
   display: flex;
+  margin-left: 20rpx;
+  flex: 2;
   padding: 2rpx;
   padding-left: 12rpx;
   height: 45rpx;
-  width: 300rpx;
   border-radius: 12rpx;
   border: 1rpx solid #ccc;
 }
@@ -26,16 +26,35 @@
   border-radius: 12rpx;
   border: 1rpx solid red;
 }
-.myinputState{
+.selectBar{
   margin-left: 20rpx;
   border: 1rpx solid #ccc;
-  height: 40rpx;
+  height: 44rpx;
   padding: 2rpx;
   padding-left: 12rpx;
-  width: 300rpx;
+  flex: 2;
   border-radius: 12rpx;
 }
-
+.picker{
+  color: rgb(122, 122, 122);
+}
+.searchButton{
+  flex: 1;
+  background-color: #EBEFFE;
+  cursor: pointer;
+  height: 44rpx;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+  border-radius: 12rpx;
+  padding: 5rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3A63F3;
+}
+.paperBoxes{
+  padding-bottom: 50rpx;
+}
 .paperBox{
   background-color: #EBEFFE;
   padding: 25rpx 30rpx 30rpx 30rpx;
@@ -55,6 +74,11 @@
   color:rgb(138, 138, 138);
   font-size: 22rpx;
   margin-bottom: 15rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2; 
 }
 .teacherBox{
   display: flex;
@@ -65,6 +89,7 @@
 .paperBoxScore,.paperBoxZi2{
   margin-bottom: 15rpx;
   font-size: 30rpx;
+  margin-right: 40rpx;
 }
 .stateBox{
   display: flex;
@@ -83,4 +108,11 @@
   margin-top: 20rpx;
   margin-right: 15rpx;
   margin-left: auto;
+}
+.blank{
+  padding-bottom: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3A63F3;
 }

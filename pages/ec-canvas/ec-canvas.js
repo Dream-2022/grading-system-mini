@@ -1,28 +1,18 @@
-// pages/my/my.js
+// pages/ec-canvas/ec-canvas.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    user:[]
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    var that = this;
-    wx.getStorage({
-      key: "userInfo",
-      success(res) {
-        that.setData({
-          user: JSON.parse(res.data)
-        });
-        console.log(that.data.user)
-      }
-    })
-    console.log(this.data.user)
+
   },
 
   /**

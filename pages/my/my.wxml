@@ -2,11 +2,12 @@
 <view class="myBigBox">
   <view class="myBoxTop">
     <view class="myBoxTopDetail1">
-      <image style="width: 140rpx; margin-top: 5rpx; margin-right: 10rpx; border-radius: 100rpx;" mode="widthFix" src='../../static/img/abc.jpeg'></image>
+    <!-- ../../static/img/abc.jpeg -->
+      <image style="width: 140rpx; margin-top: 5rpx; margin-right: 10rpx; border-radius: 100rpx;" mode="widthFix" src='{{user.avatar ? user.avatar : "../../static/img/abc.jpeg"}}'></image>
     </view>
     <view class="myBoxTopDetail2">
-      <view class="myBoxTopDetailName">李小慧</view>
-      <view class="myBoxTopDetailID">ID：1235154453623</view>
+      <view class="myBoxTopDetailName">{{user.name}}</view>
+      <view class="myBoxTopDetailID">ID：{{user.account}}</view>
     </view>
   </view>
   <view class="myBoxBottom">
@@ -16,18 +17,18 @@
         <view class="myAvatarBox">
           <view class="myBoxDetail1">头像</view>
           <view class="myBoxDetail2">
-            <image style="width: 60rpx; margin-top: 5rpx; margin-right: 10rpx; border-radius: 100rpx;" mode="widthFix" src='../../static/img/abc.jpeg'></image>
+            <image style="width: 60rpx; margin-top: 5rpx; margin-right: 10rpx; border-radius: 100rpx;" mode="widthFix" src='{{user.avatar ? user.avatar : "../../static/img/abc.jpeg"}}'></image>
           </view>
           <view class="myBoxDetail3">修改 ></view>
         </view>
         <view class="myNameBox">
           <view class="myBoxDetail1">名称</view>
-          <view class="myBoxDetail2">lizeyan</view>
-          <view class="myBoxDetail3">修改 ></view>
+          <view class="myBoxDetail2">{{user.name}}</view>
+          <view class="myBoxDetail3"></view>
         </view>
         <view class="myEmailBox">
           <view class="myBoxDetail1">邮箱</view>
-          <view class="myBoxDetail2">45476545645@qq.com</view>
+          <view class="myBoxDetail2">{{user.email}}</view>
           <view class="myBoxDetail3">修改 ></view>
         </view>
       </view>

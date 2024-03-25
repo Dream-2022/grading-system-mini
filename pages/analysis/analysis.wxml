@@ -1,4 +1,4 @@
 <!--pages/analysis/analysis.wxml-->
-<text>
-  这是学情分析
-</text>
+<view class="container">
+  <ec-canvas style="width: 100%; height: 500rpx;" id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+</view>

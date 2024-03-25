@@ -6,39 +6,45 @@
   <view>
     <view class="flexBox">
       <view class="searchBox">
-        <image style="width:50rpx; margin-top: 3rpx; margin-right: 8rpx" mode="widthFix" src='../../static/tabar/search.png'></image>
+        <image style="width:60rpx; margin-top: 3rpx; margin-right: 8rpx" mode="widthFix" src='../../static/tabar/search.png'></image>
         <input  class="myinput" placeholder="搜索" value="{{search}}"/>
       </view>
-      <view>
-        <input class="myinputState" placeholder="批改状态" value="{{state}}"/>
+      <view class="selectBar">
+        <picker mode="selector" range="{{selectArray}}"  bindchange="pickerChange">
+          <view class='picker'>{{selectValue}}</view>
+        </picker>
       </view>
+      <view class="searchButton">查询</view>
     </view>
   </view>
   <view class="paperBoxes">
-    <view class="paperBox" wx-for="item in {{paperList}}" wx:key="item">
-      <view class="paperBoxTitle">{{item.title}}</view>
-      <view class="paperBoxDetail1">您的试卷正在批阅中，请耐心等待</view>
-      <view class="teacherBox">
-        <view class="paperBoxZi">批改人：</view>
-        <view class="paperBoxTeacher">XXX老师</view>
+    <view wx:for="{{paperList}}" wx:for-item="item" wx:for-index="index">
+      <view class="paperBox" wx:if="!{{item.state}}">
+        <view class="paperBoxTitle">{{item.title}}</view>
+        <view class="paperBoxDetail1">您的试卷正在批阅中，请耐心等待</view>
+        <view class="teacherBox">
+          <view class="paperBoxZi">批改人：</view>
+          <view class="paperBoxTeacher">XXX老师</view>
+        </view>
+        <view class="stateBox">
+          <view class="paperBoxState">进行中</view>
+          <view class="paperBoxSee">查看 ></view>
+        </view>
       </view>
-      <view class="stateBox">
-        <view class="paperBoxState">进行中</view>
-        <view class="paperBoxSee">查看 ></view>
-      </view>
-    </view>
-    <view class="paperBox">
-      <view class="paperBoxTitle">{{item.title}}</view>
-      <view class="paperBoxDetail2">评语：{{item.comment}}</view>
-      <view class="teacherBox">
-        <view class="paperBoxZi2">分数：{{item.scored}}分</view>
-        <view class="paperBoxScore">满分：{{item.score}}分</view>
-      </view>
-      <view class="stateBox">
-        <view class="paperBoxState">已结束</view>
-        <view class="paperBoxTime">2024-12-02 12:22</view>
-        <view class="paperBoxSee">查看 ></view>
+      <view class="paperBox" wx:else>
+        <view class="paperBoxTitle">{{item.title}}</view>
+        <view class="paperBoxDetail2">评语：{{item.comment}}</view>
+        <view class="teacherBox">
+          <view class="paperBoxZi2">分数：{{item.score}}分</view>
+          <view class="paperBoxScore">满分：{{item.scored}}分</view>
+        </view>
+        <view class="stateBox">
+          <view class="paperBoxState">已结束</view>
+          <view class="paperBoxTime">{{item.date}}</view>
+          <view class="paperBoxSee">查看 ></view>
+        </view>
       </view>
     </view>
   </view>
+  <view class="blank">暂无更多试卷...</view>
 </view>
