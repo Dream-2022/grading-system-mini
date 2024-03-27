@@ -73,23 +73,60 @@ Page({
     })
   },
   loginClick:function loginClick(){
-    if(this.data.user==null){
-      wx.navigateTo({
-        url: '/pages/loginPage/loginPage',
-        success:function(res){
-        },
-        fail:function(error){
+    console.log("点击头像")
+    var that=this
+    wx.getStorage({
+      key: "userInfo",
+      success(res) {
+        that.setData({
+          user: JSON.parse(res.data)
+        });
+        console.log(that.data.user)
+        if(JSON.stringify(that.data.user) === JSON.stringify([])){
+          wx.navigateTo({
+            url: '/pages/loginPage/loginPage',
+            success:function(res){
+              wx.showToast({
+                title: "请先登录账号", // 提示的内容
+                icon: "none", // 图标，默认success
+                image: "", // 自定义图标的本地路径，image 的优先级高于 icon
+                duration: 1500, // 提示的延迟时间，默认1500
+                mask: false
+            })
+            },
+            fail:function(error){
+            }
+          })
+        }else{
+          wx.switchTab({
+            url: '/pages/my/my',
+            success:function(res){
+              console.log("跳转到my页面")
+            },
+            fail:function(error){
+            }
+          })
         }
-      })
-    }else{
-      wx.switchTab({
-        url: '/pages/my/my',
-        success:function(res){
-        },
-        fail:function(error){
-        }
-      })
-    }
+      },
+      fail(res){
+        console.log(res.data)
+        wx.navigateTo({
+          url: '/pages/loginPage/loginPage',
+          success:function(res){
+            console.log("跳转到loginPage页面")
+            wx.showToast({
+              title: "请先登录账号", // 提示的内容
+              icon: "none", // 图标，默认success
+              image: "", // 自定义图标的本地路径，image 的优先级高于 icon
+              duration: 1500, // 提示的延迟时间，默认1500
+              mask: false
+            })
+          },
+          fail:function(error){
+          }
+        })
+      }
+    })
   },
 
 

@@ -13,7 +13,7 @@
         <input class="myinput" placeholder="请输入密码" value="{{password}}" bindinput="inputPassword"/>
       </view>
       <view class="loginButtonBox">
-        <button class="loginButton" bind:tap="loginButton">登录</button>
+        <view class="loginButton" bind:tap="loginClick">登录</view>
       </view>
     </view>
   </view>    

@@ -1,5 +1,6 @@
 // pages/analysis/analysis.js
 import * as echarts from '../../ec-canvas/echarts';
+var chart = null;
 function initChart(canvas, width, height, dpr) {
   const chart = echarts.init(canvas, null, {
     width: width,
@@ -7,17 +8,16 @@ function initChart(canvas, width, height, dpr) {
     devicePixelRatio: dpr // new
   });
   canvas.setChart(chart);
- 
   var option = {
     title: {
-      text: '测试下面legend的红色区域不应被裁剪',
+      text: '裴雨孜成绩历次分布',
       left: 'center'
     },
     legend: {
-      data: ['A', 'B', 'C'],
+      data: ['裴雨孜', 'B', 'C'],
       top: 50,
       left: 'center',
-      backgroundColor: 'red',
+      backgroundColor: 'white',
       z: 100
     },
     grid: {
@@ -30,7 +30,7 @@ function initChart(canvas, width, height, dpr) {
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+      data: ['第一次月考', '第二次月考', '第三次月考', '第四次月考', '第五次月考', '第六次月考', '第七次月考'],
       // show: false
     },
     yAxis: {
@@ -44,45 +44,148 @@ function initChart(canvas, width, height, dpr) {
       // show: false
     },
     series: [{
-      name: 'A',
+      name: '裴雨孜',
       type: 'line',
       smooth: true,
-      data: [18, 36, 65, 30, 78, 40, 33]
-    }, {
-      name: 'B',
-      type: 'line',
-      smooth: true,
-      data: [12, 50, 51, 35, 70, 30, 20]
-    }, {
-      name: 'C',
-      type: 'line',
-      smooth: true,
-      data: [10, 30, 31, 50, 40, 20, 10]
-    }]
+      data: [90, 85, 65, 84, 80, 92, 82]
+    }
+    // , {
+    //   name: 'B',
+    //   type: 'line',
+    //   smooth: true,
+    //   data: [12, 50, 51, 35, 70, 30, 20]
+    // }, {
+    //   name: 'C',
+    //   type: 'line',
+    //   smooth: true,
+    //   data: [10, 30, 31, 50, 40, 20, 10]
+    // }
+    ]
   };
  
   chart.setOption(option);
   return chart;
 }
-                  
-Page({
+function initChart1(canvas, width, height,dpr) {
+  chart = echarts.init(canvas, null, {
+    width: width,
+    height: height,
+    devicePixelRatio: dpr 
+  });
+  canvas.setChart(chart);
 
+  var option = {
+    title: {
+      text: '裴雨孜成绩评定状况',
+      left: 'center'
+    },
+    tooltip: {
+      trigger: 'item',
+    },
+    legend: {
+      bottom: 10,
+      left: 'center',
+      data: [ '优秀', '良好', '及格', '不及格']
+    },
+    series: [
+      {
+        type: 'pie',
+        radius: '65%',
+        center: ['50%', '50%'],
+        selectedMode: 'single',
+        data: [
+          {value: 1548,name: '优秀',},
+          { value: 735, name: '良好' },
+          { value: 510, name: '及格' },
+          { value: 434, name: '不及格' }
+        ],
+        emphasis: {
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 0, 0, 0.5)'
+          }
+        }
+      }
+    ]
+  };
+
+  chart.setOption(option);
+  return chart;
+}                
+Page({
+  onShareAppMessage: function (res) {
+    return {
+      title: 'ECharts',
+      path: '/pages/index/index',
+      success: function () { },
+      fail: function () { }
+    }
+  },                   
   /**
    * 页面的初始数据
    */                
   data: {
     ec: {
       onInit: initChart
-    }
+    },
+    ec1: {
+      onInit: initChart1 
+    },
+    stateList:[],
+    historyList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    
   },
-
+  onShow(options){
+    sendMockWithStage(this)
+    sendMockWithHistory(this)
+    function sendMockWithStage(that){
+      var API = require('../../static/mock/analysis/myScoreStage.js')
+      console.log('onLoad')
+      // 使用 Mock
+      API.ajax('', function (res) {
+          console.log(res)
+          that.setData({
+            stateList:res.data
+          }, function () {
+            console.log(that.data.stateList)
+            wx.setStorage({
+              key: "stateList",
+              data: JSON.stringify(that.data.stateList),
+              success(res) {
+              }
+            })
+          })
+      });
+      console.log(that.data.stateList)
+    }
+    function sendMockWithHistory(that){
+      var API = require('../../static/mock/analysis/myScoreHistory.js')
+      console.log('onLoad')
+      // 使用 Mock
+      API.ajax('', function (res) {
+          console.log(res)
+          that.setData({
+            historyList:res.data
+          }, function () {
+            console.log(that.data.historyList)
+            wx.setStorage({
+              key: "historyList",
+              data: JSON.stringify(that.data.historyList),
+              success(res) {
+              }
+            })
+          })
+      });
+      console.log(that.data.historyList)
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -137,3 +240,4 @@ Page({
     }
   }
 })
+

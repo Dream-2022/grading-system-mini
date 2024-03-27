@@ -66,11 +66,21 @@
 }
 .loginButtonBox{
   margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-/* .loginButton{
+.loginButton{
   height: 60rpx;
   line-height: 60rpx;
-} */
+  background-color: #7990E0;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200rpx;
+  border-radius: 20rpx;
+}
 /* 响应式 */
 @media screen and (max-width: 870px) {
   .container::before {

@@ -51,7 +51,7 @@
       </view>
     </view>
     <view class="myBoxExitBox">
-      <view class="myBoxExit">退出登录</view>
+      <view class="myBoxExit" bind:tap="exitLoginClick">退出登录</view>
     </view>
   </view>
 </view>

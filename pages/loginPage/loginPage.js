@@ -19,12 +19,12 @@ Page({
       password: e.detail.value
     });
   },
-  loginButton: function loginButton(){
+  loginClick: function loginButton(){
     //发送登录请求
     console.log(this.data.password)
     console.log(this.data.username)
     wx.request({
-      url: 'http://192.168.50.24:8084/user/login',
+      url: 'http://192.168.50.150:8084/user/login',
       data: {
         account:this.data.username,
         password:this.data.password
@@ -36,13 +36,14 @@ Page({
       success (res) {//18734848
         console.log(res.data)
         console.log(res.data.data)
-        // console.log(res.headers.authorization)
         console.log(res.header['Authorization'])
         console.log(res.header['Authorization-refresh'])
         var userInfo=[]
         userInfo=res.data.data
         userInfo.shortToken=res.header['Authorization']
+        //uni.setStorageSync("shortToken",res.header['Authorization'])
         userInfo.refreshToken=res.header['Authorization-refresh']
+        //uni.setStorageSync("refreshToken",res.header['Authorization-refresh'])
         console.log(userInfo)
         wx.setStorage({
           key: "userInfo",

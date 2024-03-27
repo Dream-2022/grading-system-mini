@@ -1,6 +1,4 @@
 // pages/paper/paper.js
-//import { examPaperGetAllE } from '../../static/mock/paperGetMyAllE.js'
-
 Page({
   /**
    * 页面的初始数据
@@ -22,15 +20,17 @@ Page({
         console.log(JSON.parse(res.data))
         that.data.user=JSON.parse(res.data)
         console.log(that.data.user)
-        if(that.data.user!=null){
+        console.log(JSON.stringify(that.data.user) === JSON.stringify([]))
+        if(JSON.stringify(that.data.user) != JSON.stringify([])){
           //发送请求
           //sendRequestWithUserInfo(that.data.user,that)
           //mock数据
           sendMockWithUserInfo(that.data.user,that)
         }
         else{
+          console.log('如果没有登录，就跳转到登录页面')
           //如果没有登录，就跳转到登录页面
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/pages/loginPage/loginPage',
             success:function(res){
             },
@@ -38,7 +38,28 @@ Page({
             }
           }) 
         }
+      },
+      fail(err) {
+        console.log("获取userInfo缓存失败");
+        // 失败时也跳转到登录页面
+        wx.redirectTo({
+          url: '/pages/loginPage/loginPage',
+          success: function(res) {
+            console.log("跳转到登录页面成功");
+            wx.showToast({
+              title: "请先登录账号", // 提示的内容
+              icon: "none", // 图标，默认success
+              image: "", // 自定义图标的本地路径，image 的优先级高于 icon
+              duration: 1500, // 提示的延迟时间，默认1500
+              mask: false
+            })
+          },
+          fail: function(error) {
+            console.error("跳转到登录页面失败", error);
+          }
+        });
       }
+      
     })
     //发送请求
     // function  sendRequestWithUserInfo(userInfo,that){
@@ -61,7 +82,7 @@ Page({
     //   }) 
     // }
     function sendMockWithUserInfo(userInfo,that){
-      var API = require('../../static/mock/paperGetMyAllE.js')
+      var API = require('../../static/mock/paper/paperGetMyAllE.js')
       console.log('onLoad')
       // 使用 Mock
       API.ajax('', function (res) {
@@ -101,14 +122,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
+    console.log("监听页面隐藏")
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    console.log("监听页面卸载")
   },
 
   /**

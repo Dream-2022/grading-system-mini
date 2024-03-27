@@ -1,1 +1,7 @@
 /* pages/analysis/analysis.wxss */
+.box {
+  width:100%;
+  height:600rpx;
+  font-size: 42rpx;
+  font-weight: bold;
+} 

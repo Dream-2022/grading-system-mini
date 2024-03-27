@@ -19,19 +19,8 @@
   </view>
   <view class="paperBoxes">
     <view wx:for="{{paperList}}" wx:for-item="item" wx:for-index="index">
-      <view class="paperBox" wx:if="!{{item.state}}">
-        <view class="paperBoxTitle">{{item.title}}</view>
-        <view class="paperBoxDetail1">您的试卷正在批阅中，请耐心等待</view>
-        <view class="teacherBox">
-          <view class="paperBoxZi">批改人：</view>
-          <view class="paperBoxTeacher">XXX老师</view>
-        </view>
-        <view class="stateBox">
-          <view class="paperBoxState">进行中</view>
-          <view class="paperBoxSee">查看 ></view>
-        </view>
-      </view>
-      <view class="paperBox" wx:else>
+      
+      <view class="paperBox" wx:if="{{item.state}}">
         <view class="paperBoxTitle">{{item.title}}</view>
         <view class="paperBoxDetail2">评语：{{item.comment}}</view>
         <view class="teacherBox">
@@ -41,6 +30,18 @@
         <view class="stateBox">
           <view class="paperBoxState">已结束</view>
           <view class="paperBoxTime">{{item.date}}</view>
+          <view class="paperBoxSee">查看 ></view>
+        </view>
+      </view>
+      <view class="paperBox" wx:else>
+        <view class="paperBoxTitle">{{item.title}}</view>
+        <view class="paperBoxDetail1">您的试卷正在批阅中，请耐心等待</view>
+        <view class="teacherBox">
+          <view class="paperBoxZi">批改人：</view>
+          <view class="paperBoxTeacher">XXX老师</view>
+        </view>
+        <view class="stateBox">
+          <view class="paperBoxState">进行中</view>
           <view class="paperBoxSee">查看 ></view>
         </view>
       </view>
