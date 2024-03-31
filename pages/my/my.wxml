@@ -19,7 +19,7 @@
           <view class="myBoxDetail2">
             <image style="width: 60rpx; margin-top: 5rpx; margin-right: 10rpx; border-radius: 100rpx;" mode="widthFix" src='{{user.avatar ? user.avatar : "../../static/img/abc.jpeg"}}'></image>
           </view>
-          <view class="myBoxDetail3">修改 ></view>
+          <view class="myBoxDetail3" bind:tap="avatarClick">修改 ></view>
         </view>
         <view class="myNameBox">
           <view class="myBoxDetail1">名称</view>
@@ -29,7 +29,7 @@
         <view class="myEmailBox">
           <view class="myBoxDetail1">邮箱</view>
           <view class="myBoxDetail2">{{user.email}}</view>
-          <view class="myBoxDetail3">修改 ></view>
+          <view class="myBoxDetail3"  bindtap="btn" >修改 ></view>
         </view>
       </view>
     </view>
@@ -50,6 +50,26 @@
         </view>
       </view>
     </view>
+    <!-- 弹窗 -->
+    <view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+    <!-- 弹出层 -->
+    <view class="modalDlg" wx:if="{{showModal}}">
+          <view class="modalTitle">邮箱验证</view>
+          <view class="modalContain">
+            <view class="modalEmailZi">邮箱：</view>
+            <input class="modalEmail" placeholder="请输入邮箱"  bindinput="emailChange" value="{{emailInput}}"/>
+          </view>
+          <view class="modalContain">
+            <view class="modalCodeZi">验证码:</view>
+            <input class="modalCode" placeholder="请获取验证码"  bindinput="codeChange" value="{{codeInput}}"/>
+            <view class="modalCodeButton" bind:tap="modalObtainCode">获取</view>
+          </view>
+          <view class="modalBottom">
+            <view bindtap="modalConfirmClick" class="modalConfirm">确认</view>
+            <view bindtap="modalCancelClick" class="modalCancel">取消</view>
+          </view>
+      </view>
+    <!-- <view class="btn">弹窗</view> -->
     <view class="myBoxExitBox">
       <view class="myBoxExit" bind:tap="exitLoginClick">退出登录</view>
     </view>

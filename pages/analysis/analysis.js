@@ -8,62 +8,78 @@ function initChart(canvas, width, height, dpr) {
     devicePixelRatio: dpr // new
   });
   canvas.setChart(chart);
-  var option = {
-    title: {
-      text: '裴雨孜成绩历次分布',
-      left: 'center'
-    },
-    legend: {
-      data: ['裴雨孜', 'B', 'C'],
-      top: 50,
-      left: 'center',
-      backgroundColor: 'white',
-      z: 100
-    },
-    grid: {
-      containLabel: true
-    },
-    tooltip: {
-      show: true,
-      trigger: 'axis'
-    },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: ['第一次月考', '第二次月考', '第三次月考', '第四次月考', '第五次月考', '第六次月考', '第七次月考'],
-      // show: false
-    },
-    yAxis: {
-      x: 'center',
-      type: 'value',
-      splitLine: {
-        lineStyle: {
-          type: 'dashed'
+  wx.getStorage({
+    key: "historyXDataList",
+    success(res) {
+      var historyXDataList=res.data
+      wx.getStorage({
+        key: "userInfo",
+        success(res) {
+          var userInfo=JSON.parse(res.data)
+          console.log(userInfo)
+          wx.getStorage({
+            key: "historyScoreDataList",
+            success(res) {
+              var historyScoreDataList=res.data
+              console.log(historyXDataList,historyScoreDataList)
+              var option = {
+                title: {
+                  text: userInfo.name+'成绩历次分布',
+                  left: 'center'
+                },
+                dataZoom: [{
+                        type: 'slider', //1平移 缩放
+                        throttle: '50', //设置触发视图刷新的频率。单位为毫秒（ms）。
+                        minValueSpan: 6, //用于限制窗口大小的最小值,在类目轴上可以设置为 5 表示 5 个类目
+                        start: 1, //数据窗口范围的起始百分比 范围是：0 ~ 100。表示 0% ~ 100%。
+                        end: 50, //数据窗口范围的结束百分比。范围是：0 ~ 100。
+                        zoomLock: false, //如果设置为 true 则锁定选择区域的大小，也就是说，只能平移，不能缩放。
+                }],
+                legend: {
+                  data: [userInfo.name],
+                  top: 50,
+                  left: 'center',
+                  backgroundColor: 'white',
+                  z: 100
+                },
+                grid: {
+                  containLabel: true
+                },
+                tooltip: {
+                  show: true,
+                  trigger: 'axis'
+                },
+                xAxis: {
+                  type: 'category',
+                  boundaryGap: false,
+                  data: historyXDataList,
+                  // show: false
+                },
+                yAxis: {
+                  x: 'center',
+                  type: 'value',
+                  splitLine: {
+                    lineStyle: {
+                      type: 'dashed'
+                    }
+                  }
+                  // show: false
+                },
+                series: [{
+                  name: userInfo.name,
+                  type: 'line',
+                  smooth: true,
+                  data: historyScoreDataList
+                }]
+              };
+              chart.setOption(option);
+            }
+          })
         }
-      }
-      // show: false
-    },
-    series: [{
-      name: '裴雨孜',
-      type: 'line',
-      smooth: true,
-      data: [90, 85, 65, 84, 80, 92, 82]
+      })
     }
-    // , {
-    //   name: 'B',
-    //   type: 'line',
-    //   smooth: true,
-    //   data: [12, 50, 51, 35, 70, 30, 20]
-    // }, {
-    //   name: 'C',
-    //   type: 'line',
-    //   smooth: true,
-    //   data: [10, 30, 31, 50, 40, 20, 10]
-    // }
-    ]
-  };
+  })
  
-  chart.setOption(option);
   return chart;
 }
 function initChart1(canvas, width, height,dpr) {
@@ -73,44 +89,53 @@ function initChart1(canvas, width, height,dpr) {
     devicePixelRatio: dpr 
   });
   canvas.setChart(chart);
-
-  var option = {
-    title: {
-      text: '裴雨孜成绩评定状况',
-      left: 'center'
-    },
-    tooltip: {
-      trigger: 'item',
-    },
-    legend: {
-      bottom: 10,
-      left: 'center',
-      data: [ '优秀', '良好', '及格', '不及格']
-    },
-    series: [
-      {
-        type: 'pie',
-        radius: '65%',
-        center: ['50%', '50%'],
-        selectedMode: 'single',
-        data: [
-          {value: 1548,name: '优秀',},
-          { value: 735, name: '良好' },
-          { value: 510, name: '及格' },
-          { value: 434, name: '不及格' }
-        ],
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          }
+  wx.getStorage({
+    key: "userInfo",
+    success(res) {
+      var userInfo=JSON.parse(res.data)
+      wx.getStorage({
+        key: "stateList",
+        success(res) {
+          var stateList=JSON.parse(res.data)
+          console.log(stateList)
+          var option = {
+            title: {
+              text: userInfo.name+'成绩评定状况',
+              left: 'center'
+            },
+            tooltip: {
+              trigger: 'item',
+            },
+            legend: {
+              bottom: 10,
+              left: 'center',
+              data: [ '优秀', '良好', '及格', '不及格']
+            },
+            series: [
+              {
+                type: 'pie',
+                radius: '65%',
+                center: ['50%', '50%'],
+                selectedMode: 'single',
+                data: stateList,
+                emphasis: {
+                  itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  }
+                }
+              }
+            ]
+          };
+        
+          chart.setOption(option);
         }
-      }
-    ]
-  };
+      })
 
-  chart.setOption(option);
+    }
+  })
+
   return chart;
 }                
 Page({
@@ -132,47 +157,35 @@ Page({
     ec1: {
       onInit: initChart1 
     },
+    historyList:[],
     stateList:[],
-    historyList:[]
+
+    historyXDataList:[],
+    historyScoreDataList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
-  },
-  onShow(options){
     sendMockWithStage(this)
     sendMockWithHistory(this)
-    function sendMockWithStage(that){
-      var API = require('../../static/mock/analysis/myScoreStage.js')
-      console.log('onLoad')
-      // 使用 Mock
-      API.ajax('', function (res) {
-          console.log(res)
-          that.setData({
-            stateList:res.data
-          }, function () {
-            console.log(that.data.stateList)
-            wx.setStorage({
-              key: "stateList",
-              data: JSON.stringify(that.data.stateList),
-              success(res) {
-              }
-            })
-          })
-      });
-      console.log(that.data.stateList)
-    }
     function sendMockWithHistory(that){
       var API = require('../../static/mock/analysis/myScoreHistory.js')
       console.log('onLoad')
       // 使用 Mock
       API.ajax('', function (res) {
           console.log(res)
+          wx.setStorage({
+            key: "historyXDataList",
+            data: res.data.data.map(item => item.examName),
+          })
+          wx.setStorage({
+            key: "historyScoreDataList",
+            data: res.data.data.map(item => item.score),
+          })
           that.setData({
-            historyList:res.data
+            historyList:res.data.data
           }, function () {
             console.log(that.data.historyList)
             wx.setStorage({
@@ -185,6 +198,28 @@ Page({
       });
       console.log(that.data.historyList)
     }
+    function sendMockWithStage(that){
+      var API = require('../../static/mock/analysis/myScoreStage.js')
+      console.log('onLoad')
+      // 使用 Mock
+      API.ajax('', function (res) {
+          console.log(res)
+          that.setData({
+            stateList:res.data.data
+          }, function () {
+            console.log(that.data.stateList)
+            wx.setStorage({
+              key: "stateList",
+              data: JSON.stringify(that.data.stateList),
+              success(res) {
+              }
+            })
+          })
+      });
+      console.log(that.data.stateList)
+    }
+  },
+  onShow(options){
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

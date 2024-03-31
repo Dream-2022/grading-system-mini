@@ -11,7 +11,9 @@
     "pages/wenXin/wenXin",
     "pages/login/login",
     "pages/loginPage/loginPage",
-    "pages/ec-canvas/ec-canvas"
+    "pages/paperDetail/paperDetail",
+    "pages/myChildren/myChildren",
+    "pages/homeTeacher/homeTeacher"
   ],
   "tabBar": {
     "list": [

@@ -1,28 +1,20 @@
-let API_HOST = "http://192.168.50.24:8084/examPaper/getMyEByC";
-let DEBUG = true;//切换数据入口
+let API_HOST = "http://192.168.9.105:8084/examPaper/getMyEByC";
+let DEBUG = false;//切换数据入口
 var Mock = require("../../../utils/WxMock.js"); 
 var Random = Mock.Random;
 Random.natural()
-function ajax(data = '', fn, method = "get", header = {}) {
+function ajax(data = '', fn, method = "get", header = {},userInfo) {
+    console.log(userInfo) 
+    console.log(userInfo.shortToken) 
     if (!DEBUG) {
-        // wx.request({
-        //     url: API_HOST,
-        //     method: method ? method : 'get',
-        //     data: {
-        //       condition:''
-        //     },
-        //     header: { 
-        //       "Content-Type": "application/json" ,
-        //       "Authorization": userInfo.shortToken
-        //     },
-        //     success: function (res) {
-        //         fn(res);
-        //     }
-        // });
         wx.request({
           url: API_HOST,
           header:{
+            "Authorization": userInfo.shortToken,
             'content-type': 'application/json' // 默认值
+          },
+          data:{
+            "condition":""
           },
           method: 'GET',
           success (res) {

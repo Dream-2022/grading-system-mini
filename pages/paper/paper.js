@@ -88,11 +88,11 @@ Page({
       API.ajax('', function (res) {
           console.log(res)
           that.setData({
-            paperList:res.data
+            paperList:res.data.data
           }, function () {
             console.log(that.data.paperList)
           })
-      });
+      }, 'get', {},userInfo);
       console.log(that.data.paperList)
     }
   },

@@ -24,7 +24,7 @@ Page({
     console.log(this.data.password)
     console.log(this.data.username)
     wx.request({
-      url: 'http://192.168.50.150:8084/user/login',
+      url: 'http://192.168.219.29:8084/user/login',
       data: {
         account:this.data.username,
         password:this.data.password
@@ -41,34 +41,88 @@ Page({
         var userInfo=[]
         userInfo=res.data.data
         userInfo.shortToken=res.header['Authorization']
-        //uni.setStorageSync("shortToken",res.header['Authorization'])
         userInfo.refreshToken=res.header['Authorization-refresh']
-        //uni.setStorageSync("refreshToken",res.header['Authorization-refresh'])
-        console.log(userInfo)
         wx.setStorage({
           key: "userInfo",
           data: JSON.stringify(userInfo),
           success(res) {
             console.log(res)
-            wx.showToast({
-              title: "登录成功", // 提示的内容
-              icon: "success", // 图标，默认success
-              image: "", // 自定义图标的本地路径，image 的优先级高于 icon
-              duration: 1500, // 提示的延迟时间，默认1500
-              mask: false, // 是否显示透明蒙层，防止触摸穿透
-            })
-            wx.switchTab({
-              url: '/pages/home/home',
-              success:function(res){
-                console.log(res)
-              },
-              fail:function(error){
-                console.log(error)
-              }
-            })
           }
         })
-        
+        wx.showToast({
+          title: "登录成功", // 提示的内容
+          icon: "success", // 图标，默认success
+          image: "", // 自定义图标的本地路径，image 的优先级高于 icon
+          duration: 1500, // 提示的延迟时间，默认1500
+          mask: false, // 是否显示透明蒙层，防止触摸穿透
+        })
+        //判断用户身份
+        if(userInfo.identity == "teacher"){    //教师
+          app.routerList = [
+            {
+              "pagePath": "pages/home/home",
+              "text": "主页",
+              "iconPath": "/static/tabar/home.png",
+              "selectedIconPath": "/static/tabar/home-filling.png"
+            },
+            {
+              "pagePath": "pages/paper/paper",
+              "text": "试卷",
+              "iconPath": "/static/tabar/paper.png",
+              "selectedIconPath": "/static/tabar/uf_paper.png"
+            },
+            {
+              "pagePath": "pages/my/my",
+              "text": "我的",
+              "iconPath": "/static/tabar/my.png",
+              "selectedIconPath": "/static/tabar/my_fill.png"
+            }
+          ]
+          wx.reLaunch({
+            url: '/pages/zy/index',
+          })
+        }else if(userInfo.identity == "student"){   //学生
+          app.routerList = [
+            {
+              "pagePath": "pages/home/home",
+              "text": "主页",
+              "iconPath": "/static/tabar/home.png",
+              "selectedIconPath": "/static/tabar/home-filling.png"
+            },
+            {
+              "pagePath": "pages/paper/paper",
+              "text": "试卷",
+              "iconPath": "/static/tabar/paper.png",
+              "selectedIconPath": "/static/tabar/uf_paper.png"
+            },
+            {
+              "pagePath": "pages/my/my",
+              "text": "我的",
+              "iconPath": "/static/tabar/my.png",
+              "selectedIconPath": "/static/tabar/my_fill.png"
+            }
+          ]
+          wx.reLaunch({
+            url: '/pages/home/home',
+          })
+        wx.switchTab({
+          url: '/pages/home/home',
+          success:function(res){
+            console.log(res)
+          },
+          fail:function(error){
+            console.log(error)
+          }
+        })
+        }else{
+          wx.showToast({
+            title: "暂未开放该身份的小程序端", // 提示的内容
+            icon: "none", // 图标，默认success
+            image: "", // 自定义图标的本地路径，image 的优先级高于 icon
+            duration: 1500, // 提示的延迟时间，默认1500
+            mask: false, // 是否显示透明蒙层，防止触摸穿透
+          })
+        }
       }
     }) 
   },
