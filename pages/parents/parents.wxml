@@ -1,0 +1,24 @@
+<!--pages/notice/notice.wxml-->
+<scroll-view>
+  <view class="title">
+    我的家长
+  </view>
+  <view class="parentBoxes">
+    <view class="parentBox">
+      <image style="width: 100rpx;border-radius: 50%;margin-left: 30rpx; margin-right: 30rpx;" src="../../static/img/avatar.jpg" mode="widthFix"/>
+      <view style="margin-right : auto" class="parentInformation">
+        <text class="parentIdentity">父亲</text>
+        <text>agiuhai</text>
+      </view>
+      <view class="unbindButton" bind:tap="unbindClick">解绑</view>
+    </view>
+    <view class="parentBox">
+      <image style="width: 100rpx;border-radius: 50%;margin-left: 30rpx; margin-right: 30rpx;" src="../../static/img/avatar.jpg" mode="widthFix"/>
+      <view style="margin-right : auto" class="parentInformation">
+        <text class="parentIdentity">父亲</text>
+        <text>agiuhai</text>
+      </view>
+      <view class="unbindButton" bind:tap="unbindClick">解绑</view>
+    </view>
+  </view>
+</scroll-view>

@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/homeTeacher/homeTeacher",    
     "pages/paper/paper",
     "pages/my/my",
     "pages/relationship/relationship",
@@ -13,9 +14,13 @@
     "pages/loginPage/loginPage",
     "pages/paperDetail/paperDetail",
     "pages/myChildren/myChildren",
-    "pages/homeTeacher/homeTeacher"
+    "pages/parents/parents"
   ],
   "tabBar": {
+    "custom": true,
+    "color": "#ffffff",
+    "selectedColor": "#ffffff",
+    "backgroundColor": "#7990e0",
     "list": [
       {
         "pagePath": "pages/home/home",
@@ -34,11 +39,20 @@
         "text": "我的",
         "iconPath": "/static/tabar/my.png",
         "selectedIconPath": "/static/tabar/my_fill.png"
+      },
+      {
+        "pagePath": "pages/myChildren/myChildren",
+        "text": "孩子",
+        "iconPath": "/static/tabar/baby.png",
+        "selectedIconPath": "/static/tabar/babyIcon.png"
+      },
+      {
+        "pagePath": "pages/homeTeacher/homeTeacher",
+        "text": "主页",
+        "iconPath": "/static/tabar/home.png",
+        "selectedIconPath": "/static/tabar/home-filling.png"
       }
-    ],
-    "color": "#ffffff",
-    "selectedColor": "#ffffff",
-    "backgroundColor": "#7990e0"
+    ]
   },
   "window": {
     "navigationBarTextStyle": "white",

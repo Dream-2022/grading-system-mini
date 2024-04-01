@@ -72,6 +72,15 @@ Page({
       }
     })
   },
+  toParents:function toWrong(){
+    wx.navigateTo({
+      url: '/pages/parents/parents',
+      success:function(res){
+      },
+      fail:function(error){
+      }
+    })
+  },
   loginClick:function loginClick(){
     console.log("点击头像")
     var that=this
@@ -138,9 +147,30 @@ Page({
     wx.getStorage({
       key: "userInfo",
       success(res) {
-        console.log(JSON.parse(res.data))
-        that.data.user=JSON.parse(res.data)
+        that.setData({
+          user: JSON.parse(res.data)
+        });
         console.log(that.data.user)
+        if(JSON.stringify(that.data.user) === JSON.stringify([])){
+          wx.redirectTo({
+            url: '/pages/loginPage/loginPage',
+            success:function(res){
+            },
+            fail:function(error){
+            }
+          })
+        }
+      },
+      fail(res){
+        console.log(res.data)
+        wx.redirectTo({
+          url: '/pages/loginPage/loginPage',
+          success:function(res){
+            console.log("跳转到loginPage页面")
+          },
+          fail:function(error){
+          }
+        })
       }
     })
   },

@@ -1,14 +1,90 @@
 // pages/ai/ai.js
+const app = getApp().globalData  
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
+    rightId:wx.getStorageSync('userInfo') || 0,
     username: '',
     password: '',
-    user:[]
+    user:[],
+    list: [],
+    list1: [{//教师
+      "pagePath": "pages/homeTeacher/homeTeacher",
+      "text": "主页",
+      "iconPath": "/static/tabar/home.png",
+      "selectedIconPath": "/static/tabar/home-filling.png"
+    },
+    {
+      "pagePath": "pages/myChildren/myChildren",
+      "text": "孩子",
+      "iconPath": "/static/tabar/baby.png",
+      "selectedIconPath": "/static/tabar/children.png"
+    },
+    {
+      "pagePath": "pages/my/my",
+      "text": "我的",
+      "iconPath": "/static/tabar/my.png",
+      "selectedIconPath": "/static/tabar/my_fill.png"
+    }
+    ],
+    list2: [{//学生
+      "pagePath": "pages/home/home",
+      "text": "主页",
+      "iconPath": "/static/tabar/home.png",
+      "selectedIconPath": "/static/tabar/home-filling.png"
+    },
+    {
+      "pagePath": "pages/paper/paper",
+      "text": "试卷",
+      "iconPath": "/static/tabar/paper.png",
+      "selectedIconPath": "/static/tabar/uf_paper.png"
+    },
+    {
+      "pagePath": "pages/my/my",
+      "text": "我的",
+      "iconPath": "/static/tabar/my.png",
+      "selectedIconPath": "/static/tabar/my_fill.png"
+    }
+    ]
   },
+  attached() {
+    this.changeList()
+    getApp().eventBus.on('rightChange', data => {
+      if (data !== this.data.rightId) {
+        this.setData({
+          rightId: data
+        })
+        this.changeList()
+      }
+    })
+  },
+  detached() {
+    app.eventBus.off('rightChange')
+  },
+  methods: {
+    changeList() {
+      this.setData({
+        rightId: wx.getStorageSync('rightId') || 0
+      })
+      if (this.data.rightId === 1) {
+        this.setData({
+          list: this.data.list2
+        })
+      } else {
+        this.setData({
+          list: this.data.list1
+        })
+      }
+    },
+    switchTab(e) {
+      const data = e.currentTarget.dataset
+      const url = data.path
+      wx.switchTab({ url })
+    }
+  },
+  //两个监听输入框的函数
   inputUsername(e) {
     this.setData({
       username: e.detail.value
@@ -19,13 +95,24 @@ Page({
       password: e.detail.value
     });
   },
+  //点击登录
   loginClick: function loginButton(){
+    if(this.data.password==""||this.data.username==""){
+      wx.showToast({
+        title: "输入内容不能为空", // 提示的内容
+        icon: "none", // 图标，默认success
+        image: "", // 自定义图标的本地路径，image 的优先级高于 icon
+        duration: 1500, // 提示的延迟时间，默认1500
+        mask: false, // 是否显示透明蒙层，防止触摸穿透
+      })
+      return
+    }
     //发送登录请求
     console.log(this.data.password)
     console.log(this.data.username)
-    wx.request({
-      url: 'http://192.168.219.29:8084/user/login',
-      data: {
+    wx.request({//12345678
+      url: 'http://192.251.23.120:8084/user/login',
+      data: {//18734848
         account:this.data.username,
         password:this.data.password
       },
@@ -33,7 +120,7 @@ Page({
       header: {
         'content-type': 'application/json' // 默认值
       },
-      success (res) {//18734848
+      success (res) {
         console.log(res.data)
         console.log(res.data.data)
         console.log(res.header['Authorization'])
@@ -44,10 +131,7 @@ Page({
         userInfo.refreshToken=res.header['Authorization-refresh']
         wx.setStorage({
           key: "userInfo",
-          data: JSON.stringify(userInfo),
-          success(res) {
-            console.log(res)
-          }
+          data: JSON.stringify(userInfo)
         })
         wx.showToast({
           title: "登录成功", // 提示的内容
@@ -58,18 +142,20 @@ Page({
         })
         //判断用户身份
         if(userInfo.identity == "teacher"){    //教师
+          console.log("教师")
+          console.log(app)
           app.routerList = [
             {
-              "pagePath": "pages/home/home",
+              "pagePath": "pages/homeTeacher/homeTeacher",
               "text": "主页",
               "iconPath": "/static/tabar/home.png",
               "selectedIconPath": "/static/tabar/home-filling.png"
             },
             {
-              "pagePath": "pages/paper/paper",
-              "text": "试卷",
-              "iconPath": "/static/tabar/paper.png",
-              "selectedIconPath": "/static/tabar/uf_paper.png"
+              "pagePath": "pages/myChildren/myChildren",
+              "text": "孩子",
+              "iconPath": "/static/tabar/baby.png",
+              "selectedIconPath": "/static/tabar/children.png"
             },
             {
               "pagePath": "pages/my/my",
@@ -79,29 +165,9 @@ Page({
             }
           ]
           wx.reLaunch({
-            url: '/pages/zy/index',
+            url: '/pages/homeTeacher/homeTeacher',
           })
         }else if(userInfo.identity == "student"){   //学生
-          app.routerList = [
-            {
-              "pagePath": "pages/home/home",
-              "text": "主页",
-              "iconPath": "/static/tabar/home.png",
-              "selectedIconPath": "/static/tabar/home-filling.png"
-            },
-            {
-              "pagePath": "pages/paper/paper",
-              "text": "试卷",
-              "iconPath": "/static/tabar/paper.png",
-              "selectedIconPath": "/static/tabar/uf_paper.png"
-            },
-            {
-              "pagePath": "pages/my/my",
-              "text": "我的",
-              "iconPath": "/static/tabar/my.png",
-              "selectedIconPath": "/static/tabar/my_fill.png"
-            }
-          ]
           wx.reLaunch({
             url: '/pages/home/home',
           })
@@ -153,7 +219,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      console.log(this.getTabBar())
+      this.getTabBar().setData({
+        active: 1        //这里的active的值根据你的routerList 顺序一致
+      })
+    }
   },
 
   /**

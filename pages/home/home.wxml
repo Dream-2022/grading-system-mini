@@ -27,18 +27,18 @@
       <view style="color:#a29bfe" class="iconfont icon-chart-relationship"></view>
       <text>关系绑定</text>
     </view>
-    <view class="little" bind:tap="toWenXin">
-      <view style="color:#a29bfe" class="iconfont icon-baiduwxyy"></view>
-      <text>文心一言</text>
-    </view>
+    <!-- <view class="little" bind:tap="toWenXin">
+      <view style="color:#a29bfe" class="iconfont icon-wuguan"></view>
+      <text>AI出题</text>
+    </view> -->
     <view class="little" bind:tap="toNotice">
       <view style="color:#55efc4" class="iconfont icon-notice"></view>
       <text>通知</text>
     </view>
-    <view class="little" bind:tap="toHistory">
+    <!-- <view class="little" bind:tap="toHistory">
       <view style="color:#fdcb6e" class="iconfont icon-paperstack"></view>
       <text>历史试题</text>
-    </view>
+    </view> -->
     <view class="little" bind:tap="toMy">
       <view style="color:#ff7675" class="iconfont icon-information"></view>
       <text>个人信息</text>
@@ -46,11 +46,11 @@
   </view>
 
   <view class="myParents">
-    <view class="avatars">
+    <view class="avatars"  bind:tap="toParents">
       <image style="width: 100rpx;border-radius: 50%;" src="../../static/img/avatar.jpg" mode="widthFix"/>
       <image style="width: 100rpx;border-radius: 50%;" src="../../static/img/avatar.jpg" mode="widthFix"/>
     </view>
-    <view class="look">
+    <view class="look" bind:tap="toParents">
       我的家长>>>
     </view>
   </view>

@@ -68,8 +68,7 @@
             <view bindtap="modalConfirmClick" class="modalConfirm">确认</view>
             <view bindtap="modalCancelClick" class="modalCancel">取消</view>
           </view>
-      </view>
-    <!-- <view class="btn">弹窗</view> -->
+    </view>
     <view class="myBoxExitBox">
       <view class="myBoxExit" bind:tap="exitLoginClick">退出登录</view>
     </view>

@@ -20,11 +20,11 @@
 }
 
 .function{
-  margin-left: 20rpx;
-  margin-right: 20rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
   margin-top: 60rpx;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap:60rpx;
 }
 
@@ -78,4 +78,7 @@
 
 .icon-baiduwxyy:before {
   content: "\e612";
+}
+.icon-wuguan:before {
+  content: "\ec5f";
 }

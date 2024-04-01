@@ -63,6 +63,7 @@
 }
 .myinput{
   margin-top: 8rpx;
+  width: 350rpx;
 }
 .loginButtonBox{
   margin-top: 20rpx;

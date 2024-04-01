@@ -12,6 +12,7 @@ Page({
     codeInput:"",
     emailInput:"",
   },
+  //验证码输入框
   codeChange: function (e) {
     // 获取输入框的值
     let inputValue = e.detail.value;
@@ -20,6 +21,7 @@ Page({
       codeInput: inputValue
     });
   },
+  //邮箱输入框
   emailChange: function (e) {
     // 获取输入框的值
     let inputValue = e.detail.value;
@@ -74,7 +76,7 @@ Page({
         console.log(that.data.emailInput)
         console.log(that.data.codeInput)
         wx.request({
-          url: "http://192.168.9.29:8084/user/vCode",
+          url: "http://192.168.226.29:8084/user/vCode",
           header:{
             "Authorization": userInfo.shortToken,
             'content-type': 'application/json' // 默认值
@@ -128,8 +130,7 @@ Page({
         console.log(that.data.codeInput)//2171204141@qq.com
         var there=that
         wx.request({
-          url: "http://192.168.9.29:8084/user/emailBind?email="+there.data.emailInput+"&code="+there.data.codeInput,
-          // url:"http://192.168.9.29:8084/user/emailBind",
+          url: "http://192.168.226.29:8084/user/emailBind?email="+there.data.emailInput+"&code="+there.data.codeInput,
           header:{
             "Authorization": userInfo.shortToken,
             'content-type': 'application/json' // 默认值
@@ -137,6 +138,12 @@ Page({
           method: 'POST',
           success (res) {
             console.log(res.data.data)
+            var userX=there.data.user
+            userX.emial=there.data.emailInput
+            this.setData({
+              user: userX
+            });
+            console.log(there.data.user)
             wx.showToast({
               title: "邮箱更改成功", // 提示的内容
               icon: "success", // 图标，默认success
@@ -227,17 +234,15 @@ Page({
                   console.log(that.data.user)
                   console.log(that.data.user.account)
                   wx.request({
-                    url: "http://192.168.9.105:9080/testPaper/uploadAvatar?account="+that.data.user.account,
-                    // url:"http://192.168.9.105:9080/testPaper/uploadAvatar",
+                    url: "http://192.168.50.14:9080/testPaper/uploadAvatar?account="+that.data.user.account,
+                    // url:"http://192.168.9.105:9080/testPaper/uploadAvatar"+that.data.user.account,
                     headers:{
                       "Authorization": that.data.shortToken,
-                      'content-type': 'multipart/form-data; boundary=XXX' // 默认值
+                      'content-type': 'multipart/form-data;' // 默认值
                     },
-                    data:'\r\n--XXX' +
-                      '\r\nContent-Disposition: form-data; name="avatar"' +
-                      '\r\n' +
-                      '\r\n'+url +
-                      '\r\n--XXX',
+                    formData:{
+                      "avatar": url
+                    },
                     method: 'POST',
                     success (res) {
                       console.log(res.data.data)
@@ -305,7 +310,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    if (typeof this.getTabBar === 'function' &&
+        this.getTabBar()) {
+        this.getTabBar().setData({
+          selected: 2
+        })
+      }
   },
 
   /**
