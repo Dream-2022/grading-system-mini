@@ -1,0 +1,4 @@
+<view>
+  <view class="testClick" bind:tap="testClick">test</view>
+  <canvas style="width: 400px; height: 500px;" canvas-id="yueEle" binderror="canvasIdErrorCallback"></canvas>
+</view>

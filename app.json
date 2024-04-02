@@ -15,7 +15,8 @@
     "pages/myChildren/myChildren",
     "pages/parents/parents",
     "pages/paperParent/paperParent",
-    "pages/relationshipParent/relationshipParent" 
+    "pages/relationshipParent/relationshipParent",
+    "pages/testPage/testPage"
   ],
   "tabBar": {
     "custom": true,

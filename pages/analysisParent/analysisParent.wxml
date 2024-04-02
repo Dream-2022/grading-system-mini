@@ -4,11 +4,19 @@
     <view class="selectBox">
       <view class="selectBar">
         <picker mode="selector" range="{{selectArray}}"  bindchange="pickerChange">
-          <view class='picker'>12</view>
+          <view class='picker'>{{selectValue}}</view>
         </picker>
       </view>
       <image src="../../static/img/Down.png" style="width: 28rpx; height:28rpx; margin-right: 20rpx; margin-top: 8rpx"></image>
     </view>
-    
+  </view>
+  <view class="container">
+    <!-- <view class="box">  
+      <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+    </view> 
+    <view class="box">
+      <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec1 }}"></ec-canvas>
+    </view> -->
+    <canvas style="width: 700rpx; height: 500rpx;" canvas-id="yueEle" binderror="canvasIdErrorCallback"></canvas>
   </view>
 </veiw>

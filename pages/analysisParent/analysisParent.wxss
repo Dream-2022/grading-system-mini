@@ -17,6 +17,7 @@
 }
 .selectBar{
   flex: 1;
+  color: rgb(138, 137, 137);
 }
 .selectBarZi{
   flex: 1;

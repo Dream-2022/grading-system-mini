@@ -59,28 +59,7 @@ Page({
           }
         });
       }
-      
     })
-    //发送请求
-    // function  sendRequestWithUserInfo(userInfo,that){
-    //   wx.request({
-    //     url: 'http://192.168.50.24:8084/examPaper/getMyAllE',
-    //     // data: {
-    //     //   userId: 1
-    //     // },
-    //     header:{
-    //       "Authorization": userInfo.shortToken,
-    //       'content-type': 'application/json' // 默认值
-    //     },
-    //     method: 'GET',
-    //     success (res) {
-    //       console.log(res.data.data)
-    //       that.setData({
-    //         paperList: res.data.data
-    //       });
-    //     }
-    //   }) 
-    // }
     function sendMockWithUserInfo(userInfo,that){
       var API = require('../../static/mock/paper/paperGetMyAllE.js')
       console.log('onLoad')
