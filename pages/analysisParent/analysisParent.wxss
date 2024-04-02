@@ -1,0 +1,23 @@
+.selectBigBox{
+  margin-top: 30rpx;
+  padding-left: 20rpx;
+  padding-right: 50rpx;
+  display: flex;
+  border-bottom: 2rpx solid #ccc;
+  padding-bottom: 30rpx;
+}
+.selectBox{
+  border: 1rpx solid #ccc;
+  height: 44rpx;
+  padding: 2rpx;
+  padding-left: 12rpx;
+  border-radius: 12rpx;
+  flex: 6;
+  display: flex;
+}
+.selectBar{
+  flex: 1;
+}
+.selectBarZi{
+  flex: 1;
+}

@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/home/home",
-    "pages/homeTeacher/homeTeacher",    
+    "pages/analysisParent/analysisParent",
+    "pages/home/home",  
     "pages/paper/paper",
     "pages/my/my",
     "pages/relationship/relationship",
@@ -10,11 +10,12 @@
     "pages/history/history",
     "pages/analysis/analysis",
     "pages/wenXin/wenXin",
-    "pages/login/login",
     "pages/loginPage/loginPage",
     "pages/paperDetail/paperDetail",
     "pages/myChildren/myChildren",
-    "pages/parents/parents"
+    "pages/parents/parents",
+    "pages/paperParent/paperParent",
+    "pages/relationshipParent/relationshipParent" 
   ],
   "tabBar": {
     "custom": true,
@@ -41,16 +42,16 @@
         "selectedIconPath": "/static/tabar/my_fill.png"
       },
       {
-        "pagePath": "pages/myChildren/myChildren",
-        "text": "孩子",
-        "iconPath": "/static/tabar/baby.png",
-        "selectedIconPath": "/static/tabar/babyIcon.png"
+        "pagePath": "pages/analysisParent/analysisParent",
+        "text": "学情分析",
+        "iconPath": "/static/tabar/analysis.png",
+        "selectedIconPath": "/static/tabar/analysis-fill.png"
       },
       {
-        "pagePath": "pages/homeTeacher/homeTeacher",
-        "text": "主页",
-        "iconPath": "/static/tabar/home.png",
-        "selectedIconPath": "/static/tabar/home-filling.png"
+        "pagePath": "pages/paperParent/paperParent",
+        "text": "孩子试卷",
+        "iconPath": "/static/tabar/baby.png",
+        "selectedIconPath": "/static/tabar/babyIcon.png"
       }
     ]
   },

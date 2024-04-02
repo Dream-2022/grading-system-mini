@@ -1,16 +1,16 @@
 export const USER_PAGE = {
   parentTabbarList : [
     {
-      "pagePath": "/pages/homeTeacher/homeTeacher",
-      "text": "主页",
-      "iconPath": "/static/tabar/home.png",
-      "selectedIconPath": "/static/tabar/home-filling.png"
+      "pagePath": "/pages/analysisParent/analysisParent",
+      "text": "学情分析",
+      "iconPath": "/static/tabar/analysis.png",
+      "selectedIconPath": "/static/tabar/analysis-fill.png"
     },
     {
-      "pagePath": "/pages/myChildren/myChildren",
-      "text": "孩子",
-      "iconPath": "../static/tabar/baby.png",
-      "selectedIconPath": "../static/tabar/babyIcon.png"
+      "pagePath": "/pages/paperParent/paperParent",
+      "text": "孩子试卷",
+      "iconPath": "/static/tabar/baby.png",
+      "selectedIconPath": "/static/tabar/babyIcon.png"
     },
     {
       "pagePath": "/pages/my/my",

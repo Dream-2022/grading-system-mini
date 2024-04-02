@@ -6,7 +6,7 @@
     <text class="projectName">云阅</text>
     </view>
     <view bind:tap="loginClick">
-      <image style="width: 60rpx;border-radius: 50%;" mode="widthFix" class='userBg' src='../../static/img/avatar.jpg'></image>
+      <image style="width: 60rpx;border-radius: 50%;" mode="widthFix" class='userBg' src='{{user.avatar ? user.avatar : "../../static/img/abc.jpeg"}}'></image>
     </view>
   </view>
 

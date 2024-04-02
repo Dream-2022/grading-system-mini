@@ -5,26 +5,7 @@ Component({
     color: "#fff", 
     selectedColor: "#fff",
     backgroundColor: "#7990e0",
-    list: [
-      // {
-      //   "pagePath": "pages/home/home",
-      //   "text": "主页",
-      //   "iconPath": "/static/tabar/home.png",
-      //   "selectedIconPath": "/static/tabar/home-filling.png"
-      // },
-      // {
-      //   "pagePath": "pages/paper/paper",
-      //   "text": "试卷",
-      //   "iconPath": "/static/tabar/paper.png",
-      //   "selectedIconPath": "/static/tabar/uf_paper.png"
-      // },
-      // {
-      //   "pagePath": "pages/my/my",
-      //   "text": "我的",
-      //   "iconPath": "/static/tabar/my.png",
-      //   "selectedIconPath": "/static/tabar/my_fill.png"
-      // }
-    ],
+    list: [],
     userInfo: []
   },
   attached() {
@@ -32,8 +13,10 @@ Component({
     wx.getStorage({
       key:"userInfo",
       success(res){
+        console.log("获取成功")
         console.log(res.data)
         var userInfo=JSON.parse(res.data)
+        console.log(userInfo.identity)
         if(userInfo.identity === "parents"){
           console.log("parents")
           that.setData({
@@ -47,7 +30,10 @@ Component({
 
           console.log(that.data.list)
         }
-        // console.log(that.data.list)
+        console.log(that.data.list)
+      },
+      fail(res){
+        console.log("获取失败")
       }
     })
   },

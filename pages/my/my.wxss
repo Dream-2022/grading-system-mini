@@ -41,6 +41,9 @@
   margin-top: 75rpx;
   margin-bottom: 25rpx;
 }
+.exitbottom{
+  height: 80rpx;
+}
 .myAvatarBox,.myNameBox,.myEmailBox{
   display: flex;
   font-size: 30rpx;

@@ -1,0 +1,14 @@
+<veiw>
+  <view class="selectBigBox">
+    <view class="selectBoxZi">选择小孩：</view>
+    <view class="selectBox">
+      <view class="selectBar">
+        <picker mode="selector" range="{{selectArray}}"  bindchange="pickerChange">
+          <view class='picker'>12</view>
+        </picker>
+      </view>
+      <image src="../../static/img/Down.png" style="width: 28rpx; height:28rpx; margin-right: 20rpx; margin-top: 8rpx"></image>
+    </view>
+    
+  </view>
+</veiw>

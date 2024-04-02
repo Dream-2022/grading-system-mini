@@ -73,4 +73,5 @@
       <view class="myBoxExit" bind:tap="exitLoginClick">退出登录</view>
     </view>
   </view>
+  <view class="exitbottom"> </view>
 </view>
