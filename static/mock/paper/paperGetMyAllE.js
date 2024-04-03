@@ -1,4 +1,4 @@
-let API_HOST = "http://192.168.9.105:8084/examPaper/getMyEByC";
+let API_HOST = "http://10.251.23.120:8084/examPaper/getMyEByC";
 let DEBUG = false;//切换数据入口
 var Mock = require("../../../utils/WxMock.js"); 
 var Random = Mock.Random;
@@ -14,7 +14,9 @@ function ajax(data = '', fn, method = "get", header = {},userInfo) {
             'content-type': 'application/json' // 默认值
           },
           data:{
-            "condition":""
+            "condition":"",
+            "pageSize":5,
+            "page":1
           },
           method: 'GET',
           success (res) {

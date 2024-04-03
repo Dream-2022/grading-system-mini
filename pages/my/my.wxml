@@ -36,18 +36,13 @@
     <view class="myBoxRelateBottom">
       <view class="myBoxBottomTitle2">关系绑定</view>
       <view class="myBoxRelates">
-        <view class="myBoxRelate">
-          <view class="myBoxRelateUsername">12341352135</view>
+        <view class="myBoxRelate"  wx:key="item" wx:for="{{peopleList}}" bind:tap="toParent">
+          <view class="myBoxRelateUsername">{{item.parentAccount}}</view>
           <view class="myBoxImage">
-            <image style="width: 60rpx; margin-top: 5rpx; margin-right: 10rpx; border-radius: 100rpx;" mode="widthFix" src='../../static/img/abc.jpeg'></image>
+            <image style="width: 60rpx; margin-top: 5rpx; margin-right: 10rpx; border-radius: 100rpx;" mode="widthFix" src='{{user.avatar ? user.avatar : "../../static/img/cat.jpeg"}}'></image>
           </view>
         </view>
-        <view class="myBoxRelate">
-          <view class="myBoxRelateUsername">12341352135</view>
-          <view class="myBoxImage">
-            <image style="width: 60rpx; margin-top: 5rpx; margin-right: 10rpx; border-radius: 100rpx;" mode="widthFix" src='../../static/img/abc.jpeg'></image>
-          </view>
-        </view>
+        <text class="peopleListZi" bind:tap="toRelationship">暂无更多绑定信息   去绑定>>></text>
       </view>
     </view>
     <!-- 弹窗 -->

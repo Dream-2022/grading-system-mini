@@ -110,7 +110,9 @@
   margin-left: auto;
 }
 .blank{
-  padding-bottom: 80rpx;
+  padding-bottom: 180rpx;
+}
+.blankZi{
   display: flex;
   align-items: center;
   justify-content: center;

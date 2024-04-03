@@ -72,7 +72,7 @@ Page({
       }
     })
   },
-  toParents:function toWrong(){
+  toParents:function(){
     wx.navigateTo({
       url: '/pages/parents/parents',
       success:function(res){

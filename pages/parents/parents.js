@@ -5,14 +5,38 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    user:[],
+    parentList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    //获取我的家长
+    var that =this
+    wx.getStorage({
+      key:"userInfo",
+      success(res){
+        that.setData({
+          user: JSON.parse(res.data)
+        })
+        wx.request({
+          url: "http://192.168.226.29:8084/user/getMyParents",
+          header:{
+            "Authorization": that.data.user.shortToken,
+            'content-type': 'application/json' // 默认值
+          },
+          method: 'GET',
+          success (res) {
+            console.log(res.data.data)
+            that.setData({
+              parentList:res.data.data
+            })
+          }
+        }) 
+      }
+    })
   },
 
   /**

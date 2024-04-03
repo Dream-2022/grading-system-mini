@@ -72,7 +72,19 @@
 .myBoxRelate{
   font-size: 30rpx;
   display: flex;
-  line-height: 60rpx;
+  line-height: 50rpx;
+  cursor: pointer;
+  border-radius: 30rpx;
+  height: 80rpx;
+  padding-top: 20rpx;
+}
+.peopleListZi{
+  color: rgb(122, 122, 122);
+  font-size: 26rpx;
+  cursor: pointer;
+  padding: 10rpx 10rpx 10rpx 5rpx;
+  margin-top: 20rpx;
+  display: block;
 }
 .myBoxRelateUsername{
   flex: 4;

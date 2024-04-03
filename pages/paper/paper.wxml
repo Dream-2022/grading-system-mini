@@ -7,20 +7,19 @@
     <view class="flexBox">
       <view class="searchBox">
         <image style="width:60rpx; margin-top: 3rpx; margin-right: 8rpx" mode="widthFix" src='../../static/tabar/search.png'></image>
-        <input  class="myinput" placeholder="搜索" value="{{search}}"/>
+        <input  class="myinput" placeholder="搜索" value="{{search}}"  bindinput="handleInput"  bindconfirm="searchClick"/>
       </view>
       <view class="selectBar">
         <picker mode="selector" range="{{selectArray}}"  bindchange="pickerChange">
           <view class='picker'>{{selectValue}}</view>
         </picker>
       </view>
-      <view class="searchButton">查询</view>
+      <view class="searchButton" bind:tap="searchClick">查询</view>
     </view>
   </view>
   <view class="paperBoxes">
-    <view wx:for="{{paperList}}" wx:for-item="item" wx:for-index="index">
-      
-      <view class="paperBox" wx:if="{{item.state}}">
+    <view wx:for="{{paperList}}" wx:key="item" wx:for-index="index">
+      <view class="paperBox" wx:if="{{item.state && selectValue !== '未批阅'}}">
         <view class="paperBoxTitle">{{item.title}}</view>
         <view class="paperBoxDetail2">评语：{{item.comment}}</view>
         <view class="teacherBox">
@@ -33,7 +32,7 @@
           <view class="paperBoxSee">查看 ></view>
         </view>
       </view>
-      <view class="paperBox" wx:else>
+      <view class="paperBox" wx:if="{{!item.state && selectValue !== '已批阅'}}">
         <view class="paperBoxTitle">{{item.title}}</view>
         <view class="paperBoxDetail1">您的试卷正在批阅中，请耐心等待</view>
         <view class="teacherBox">
@@ -47,5 +46,6 @@
       </view>
     </view>
   </view>
-  <view class="blank">暂无更多试卷...</view>
+  <view class="blankZi" wx:if="{{paperList.length == 0}}">暂无更多试卷...</view>
+  <view class="blank"> </view>
 </view>

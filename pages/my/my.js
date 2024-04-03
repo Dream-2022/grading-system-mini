@@ -11,6 +11,7 @@ Page({
     isCountDown: false,
     codeInput:"",
     emailInput:"",
+    peopleList: []
   },
   //验证码输入框
   codeChange: function (e) {
@@ -169,11 +170,9 @@ Page({
       showModal:true
     })
   },
- 
   // 禁止屏幕滚动
   preventTouchMove:function () {
   },
- 
   // 弹出层里面的弹窗
   modalCancelClick:function () {
     this.setData({
@@ -202,6 +201,24 @@ Page({
             }
           })
         }
+        console.log(that.data.user)
+        //如果是学生：获取家长关系
+        if(that.data.user.identity=="student"){
+          wx.request({
+            url: 'http://10.251.23.120:8084/user/getMyParents',
+            method: 'GET',
+            header: {
+              "Authorization": that.data.user.shortToken,
+              'content-type': 'application/json' // 默认值
+            },
+            success (res) {
+              console.log(res.data.data)
+              that.setData({
+                peopleList:res.data.data
+              })
+            }
+          })
+        }
       },
       fail(res){
         console.log(res.data)
@@ -215,7 +232,7 @@ Page({
         })
       }
     })
-    
+
   },
   //点击修改头像
   avatarClick: function(){
@@ -252,7 +269,6 @@ Page({
             })
           }
     })
- 
   },
   //倒计时
   countDown: function () {
@@ -299,6 +315,24 @@ Page({
       }
     });
   },
+  toRelationship:function(){
+    wx.navigateTo({
+      url: '/pages/relationship/relationship',
+      success:function(res){
+      },
+      fail:function(error){
+      }
+    })
+  },
+  toParent:function(){
+    wx.navigateTo({
+      url: '/pages/parents/parents',
+      success:function(res){
+      },
+      fail:function(error){
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -317,35 +351,30 @@ Page({
         })
       }
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
 
   },
-
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
 
   },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
 
   },
-
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
 
   },
-
   /**
    * 用户点击右上角分享
    */

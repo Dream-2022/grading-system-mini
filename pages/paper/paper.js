@@ -6,12 +6,35 @@ Page({
   data: {
     user:[],
     paperList:[],
-    selectArray:['全部试卷','已批阅','未批阅'],selectValue:'批阅状态'
+    selectArray:['全部试卷','已批阅','未批阅'],
+    selectValue:'批阅状态',
+    pageNum:1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+  sendMockWithUserInfo:function(userInfo,that,condition){
+    wx.request({
+      url: "http://10.251.23.120:8084/examPaper/getMyEByC",
+      header:{
+        "Authorization": userInfo.shortToken,
+        'content-type': 'application/json' // 默认值
+      },
+      data:{
+        "condition":condition,
+        "pageSize":5,
+        "page":that.data.pageNum
+      },
+      method: 'GET',
+      success (res) {
+        console.log(res.data.data)
+        that.setData({
+          paperList:res.data.data.list
+        })
+      }
+    }) 
+  },
   async onLoad(options) {
     var that=this
     wx.getStorage({
@@ -22,10 +45,7 @@ Page({
         console.log(that.data.user)
         console.log(JSON.stringify(that.data.user) === JSON.stringify([]))
         if(JSON.stringify(that.data.user) != JSON.stringify([])){
-          //发送请求
-          //sendRequestWithUserInfo(that.data.user,that)
-          //mock数据
-          sendMockWithUserInfo(that.data.user,that)
+          that.sendMockWithUserInfo(that.data.user,that,"")
         }
         else{
           console.log('如果没有登录，就跳转到登录页面')
@@ -60,21 +80,14 @@ Page({
         });
       }
     })
-    function sendMockWithUserInfo(userInfo,that){
-      var API = require('../../static/mock/paper/paperGetMyAllE.js')
-      console.log('onLoad')
-      // 使用 Mock
-      API.ajax('', function (res) {
-          console.log(res)
-          that.setData({
-            paperList:res.data.data
-          }, function () {
-            console.log(that.data.paperList)
-          })
-      }, 'get', {},userInfo);
-      console.log(that.data.paperList)
-    }
+
   },
+  //点击查询
+  searchClick:function(){
+    console.log(this.data.search)
+    this.sendMockWithUserInfo(this.data.user,this,this.data.search)
+  },
+  //点击下拉框
   pickerChange : function(e){
     var index=e.detail.value
     console.log(e.detail)
@@ -82,6 +95,13 @@ Page({
     this.setData({
       selectValue:this.data.selectArray[index]
     })
+  },
+  //获取搜索输入框中的值
+  handleInput: function(e) {
+    // 当输入框的值发生变化时，更新数据属性中的值
+    this.setData({
+      search: e.detail.value
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
