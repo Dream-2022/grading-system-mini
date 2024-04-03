@@ -1,6 +1,7 @@
 // pages/ai/ai.js
 var wxCharts = require("../../utils/wxchart.js");
 var yuelineChart=null;
+var yuePieChart=null;
 Page({
   /**
    * 页面的初始数据
@@ -13,7 +14,17 @@ Page({
     historyXDataList: [],
     historyScoreDataList: [],
     stateList: [],
-    flagChart:false
+    flagChart:false,
+    childrenIndex:0
+  },
+  onChildrenClick:function(){
+    wx.navigateTo({
+      url: '/pages/testPage/testPage',
+      success:function(res){
+      },
+      fail:function(error){
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -52,6 +63,12 @@ Page({
               selectArray: res.data.data.map(item => item.name),
               childrenList: res.data.data
             })
+            if(that.data.selectArray.length==0){
+              console.log(0)
+              that.setData({
+                selectValue: "暂未绑定小孩"
+              })
+            }
           }
         })
       },
@@ -71,6 +88,9 @@ Page({
   },
   pickerChange : function(e){
     var index=e.detail.value
+    this.setData({
+      childrenIndex:index
+    })
     console.log(e.detail)
     console.log(index)
     this.setData({
@@ -91,58 +111,78 @@ Page({
         },
         method: 'GET',
         success (res) {
-          that.setData({
-            historyXDataList:res.data.data.map(item => item.examName),
-            historyScoreDataList:res.data.data.map(item => item.score)
-          }, function () {
-            console.log(that.data.historyXDataList,that.data.historyScoreDataList)
-          })
-          console.log(that.data.historyScoreDataList)
-          console.log(that.data.historyXDataList)
-          var windowWidth = 320;
-          try {
-            var res = wx.getSystemInfoSync();
-            windowWidth = res.windowWidth;
-          } catch (e) {
-            console.error('getSystemInfoSync failed!');
-          }
-          console.log(that.data.historyXDataList)
-          console.log(that.data.historyScoreDataList)
-          yuelineChart = new wxCharts({ //当月用电折线图配置
-            canvasId: 'yueEle',
-            type: 'line', 
-            categories: that.data.historyScoreDataList, //categories X轴
-            animation: true,
-            series: [{
-              name: that.data.childrenList[index].name,
-              data: that.data.historyScoreDataList,
-              format: function (val, name) {
-                return val + '';
-              }
-            }],
-            xAxis: {
-              disableGrid: true
-            },
-            yAxis: {
-              title: '数值',
-              format: function (val) {
-                return val;
-              },
-              /*max: 20,*/
-              min: 0
-            },
-            width: windowWidth,
-            height: 200,
-            dataLabel: false,
-            dataPointShape: true,
-            extra: {
-              lineStyle: 'curve'
+          wx.setStorage({
+            key:"historyXDataList",
+            data:res.data.data.map(item => item.examName),
+            success(){
+              wx.setStorage({
+                key:"historyScoreDataList",
+                data:res.data.data.map(item => item.score),
+                success(){
+                  var windowWidth = 320;
+                  try {
+                    var res = wx.getSystemInfoSync();
+                    windowWidth = res.windowWidth;
+                  } catch (e) {
+                    console.error('getSystemInfoSync failed!');
+                  }
+                  var historyXDataList=[]
+                  var historyScoreDataList=[]
+                  wx.getStorage({
+                    key:"historyXDataList",
+                    success(res){
+                      console.log(res.data)
+                      historyXDataList=res.data
+                      wx.getStorage({
+                        key:"historyScoreDataList",
+                        success(res){
+                          console.log(res.data)
+                          historyScoreDataList=res.data
+                          console.log(historyXDataList)
+                          console.log(historyScoreDataList)
+                          yuelineChart = new wxCharts({ //当月用电折线图配置
+                            canvasId: 'yueEle',
+                            type: 'line', 
+                            categories: historyXDataList, //categories X轴
+                            animation: true, // 启用动画效果
+                            animationDuration: 1000, // 设置动画持续时间为1000ms
+                            animationTiming: 'easeInOut', // 设置动画缓动效果为easeInOut
+                            series: [{
+                              name: that.data.childrenList[index].name,
+                              data: historyScoreDataList,
+                              format: function (val, name) {
+                                return val + '';
+                              }
+                            }],
+                            xAxis: {
+                              disableGrid: true
+                            },
+                            yAxis: {
+                              title: '数值',
+                              format: function (val) {
+                                return val;
+                              },
+                              /*max: 20,*/
+                              min: 0
+                            },
+                            width: windowWidth,
+                            height: 200,
+                            dataLabel: true,
+                            dataPointShape: true,
+                            extra: {
+                              lineStyle: 'curve'
+                            }
+                          });
+                        }
+                      })
+                    }
+                  })
+                }
+              })
             }
-          });
+          })
         }
       })
-
-
     }
     function sendMockWithStage(that){
       wx.request({
@@ -155,12 +195,48 @@ Page({
         success (res) {
           wx.setStorage({
             key:"stateList",
-            data:res.data.data
-          })
-          that.setData({
-            stateList:res.data.data
-          }, function () {
-            console.log(that.data.stateList)
+            data: res.data.data,
+            success(res){
+              var stateList=[]
+              wx.getStorage({
+                key: "stateList",
+                success(res){
+                  console.log(res.data)
+                  stateList=res.data
+                  var windowWidth = 320;
+                  try {
+                    var res = wx.getSystemInfoSync();
+                    windowWidth = res.windowWidth;
+                  } catch (e) {
+                    console.error('getSystemInfoSync failed!');
+                  }
+                  var windowWidth = wx.getSystemInfoSync().windowWidth; // 获取屏幕宽度
+                  var transformedData = stateList.map(function(item) {
+                    return {
+                      name: item.name,
+                      data: item.value
+                    };
+                  });
+                  // 使用wxCharts绘制饼状图
+                  yuePieChart = new wxCharts({
+                    canvasId: 'yuePie', // 在wxml中定义的canvas-id
+                    type: 'pie', // 图表类型为饼状图
+                    animation: true, // 启用动画效果
+                    animationDuration: 1000, // 设置动画持续时间为1000ms
+                    animationTiming: 'easeInOut', // 设置动画缓动效果为easeInOut
+                    series:transformedData,
+                    width: windowWidth, // 图表宽度，可以根据需求进行调整
+                    height: 300, // 图表高度，可以根据需求进行调整
+                    dataLabel: true, // 是否显示标签，默认为false
+                    dataPointShape: true, // 是否显示数据点图形，默认为true
+                    extra: {
+                      lineStyle: 'curve' // 额外配置，这里设置曲线样式，可根据需求修改
+                    }
+                  });
+                }
+              })
+              
+            }
           })
         }
       })
@@ -193,49 +269,65 @@ Page({
       console.log("没有点击孩子")
       return;
     }
+    var windowWidth = 320;
     try {
       var res = wx.getSystemInfoSync();
       windowWidth = res.windowWidth;
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }
-    yuelineChart = new wxCharts({ //当月用电折线图配置
-      canvasId: 'yueEle',
-      type: 'line',
-      categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'], //categories X轴
-      animation: true,
-      series: [{
-        name: 'A',
-        data: [1, 6, 9, 1, 0, 2, 9, 2, 8, 6, 0, 9, 8, 0, 3, 7, 3, 9, 3, 8, 9, 5, 4, 1, 5, 8, 2, 4, 9, 8, 7],
-        format: function (val, name) {
-          return val + '';
-        }
-      }, {
-        name: 'B',
-        data: [0, 6, 2, 2, 7, 6, 2, 5, 8, 1, 8, 4, 0, 9, 7, 2, 5, 2, 8, 2, 5, 2, 9, 4, 4, 9, 8, 5, 5, 5, 6],
-        format: function (val, name) {
-          return val + '';
-        }
-      }, ],
-      xAxis: {
-        disableGrid: true
-      },
-      yAxis: {
-        title: '数值',
-        format: function (val) {
-          return val;
-        },
-        /*max: 20,*/
-        min: 0
-      },
-      width: windowWidth,
-      height: 200,
-      dataLabel: false,
-      dataPointShape: true,
-      extra: {
-        lineStyle: 'curve'
+    var that=this
+    var historyXDataList=[]
+    var historyScoreDataList=[]
+    wx.getStorage({
+      key:"historyXDataList",
+      success(res){
+        console.log(res.data)
+        historyXDataList=res.data
+        wx.getStorage({
+          key:"historyScoreDataList",
+          success(res){
+            console.log(res.data)
+            historyScoreDataList=res.data
+            console.log(historyXDataList)
+            console.log(historyScoreDataList)
+            yuelineChart = new wxCharts({ //当月用电折线图配置
+              canvasId: 'yueEle',
+              type: 'line', 
+              categories: historyXDataList, //categories X轴
+              animation: true, // 启用动画效果
+              animationDuration: 1000, // 设置动画持续时间为1000ms
+              animationTiming: 'easeInOut', // 设置动画缓动效果为easeInOut
+              series: [{
+                name: that.data.childrenList[that.data.childrenIndex].name,
+                data: historyScoreDataList,
+                format: function (val, name) {
+                  return val + '';
+                }
+              }],
+              xAxis: {
+                disableGrid: true
+              },
+              yAxis: {
+                title: '数值',
+                format: function (val) {
+                  return val;
+                },
+                /*max: 20,*/
+                min: 0
+              },
+              width: windowWidth,
+              height: 200,
+              dataLabel: true,
+              dataPointShape: true,
+              extra: {
+                lineStyle: 'curve'
+              }
+            });
+          }
+        })
       }
-    });
+    })
   },
 
   /**

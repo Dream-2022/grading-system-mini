@@ -1,6 +1,6 @@
 // pages/ai/ai.js
 var wxCharts = require("../../utils/wxchart.js");
-var yuelineChart=null;
+var yuePieChart=null;
 
 Page({
 
@@ -19,41 +19,34 @@ Page({
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }
-    yuelineChart = new wxCharts({ //当月用电折线图配置
-      canvasId: 'yueEle',
-      type: 'line',
-      categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'], //categories X轴
-      animation: true,
+    var windowWidth = wx.getSystemInfoSync().windowWidth; // 获取屏幕宽度
+
+    // 使用wxCharts绘制饼状图
+    yuePieChart = new wxCharts({
+      canvasId: 'yuePie', // 在wxml中定义的canvas-id
+      type: 'pie', // 图表类型为饼状图
+      animation: true, // 启用动画效果
+      animationDuration: 1000, // 设置动画持续时间为1000ms
+      animationTiming: 'easeInOut', // 设置动画缓动效果为easeInOut
       series: [{
-        name: 'A',
-        data: [1, 6, 9, 1, 0, 2, 9, 2, 8, 6, 0, 9, 8, 0, 3, 7, 3, 9, 3, 8, 9, 5, 4, 1, 5, 8, 2, 4, 9, 8, 7],
-        format: function (val, name) {
-          return val + '';
-        }
+        name: '优秀',
+        data: 5
       }, {
-        name: 'B',
-        data: [0, 6, 2, 2, 7, 6, 2, 5, 8, 1, 8, 4, 0, 9, 7, 2, 5, 2, 8, 2, 5, 2, 9, 4, 4, 9, 8, 5, 5, 5, 6],
-        format: function (val, name) {
-          return val + '';
-        }
-      }, ],
-      xAxis: {
-        disableGrid: true
-      },
-      yAxis: {
-        title: '数值',
-        format: function (val) {
-          return val;
-        },
-        /*max: 20,*/
-        min: 0
-      },
-      width: windowWidth,
-      height: 200,
-      dataLabel: false,
-      dataPointShape: true,
+        name: '良好',
+        data: 4
+      }, {
+        name: '及格',
+        data: 1
+      }, {
+        name: '不及格',
+        data: 2
+      }],
+      width: windowWidth, // 图表宽度，可以根据需求进行调整
+      height: 300, // 图表高度，可以根据需求进行调整
+      dataLabel: true, // 是否显示标签，默认为false
+      dataPointShape: true, // 是否显示数据点图形，默认为true
       extra: {
-        lineStyle: 'curve'
+        lineStyle: 'curve' // 额外配置，这里设置曲线样式，可根据需求修改
       }
     });
   },
