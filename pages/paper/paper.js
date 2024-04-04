@@ -87,6 +87,35 @@ Page({
     console.log(this.data.search)
     this.sendMockWithUserInfo(this.data.user,this,this.data.search)
   },
+  //点击试卷
+  paperBoxClick: function(event){
+    wx.navigateTo({
+      url: '/pages/paperDetail/paperDetail',
+      success:function(res){
+      },
+      fail:function(error){
+      }
+    })
+    var index = event.currentTarget.dataset.index;
+    console.log('点击了 paperBox，传递的值为：', index);
+    wx.setStorage({
+      key:"paper",
+      data:this.data.paperList[index]
+    })
+    wx.setStorage({
+      key:"paperId",
+      data:this.data.paperList[index].id
+    })
+  },
+  noPaperBoxClick:function(){
+    wx.showToast({
+      title: "暂未完成批阅，请耐心等待", // 提示的内容
+      icon: "none", // 图标，默认success
+      image: "", // 自定义图标的本地路径，image 的优先级高于 icon
+      duration: 1500, // 提示的延迟时间，默认1500
+      mask: false, // 是否显示透明蒙层，防止触摸穿透
+  })
+  },
   //点击下拉框
   pickerChange : function(e){
     var index=e.detail.value

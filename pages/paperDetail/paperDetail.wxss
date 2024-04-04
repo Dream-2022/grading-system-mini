@@ -1,0 +1,144 @@
+.boxTop{
+  width: 70%;
+  margin: auto;
+  display: flex;
+  margin-top: 50rpx;
+  margin-bottom: 30rpx;
+}
+.paperTitle{
+  font-size:35rpx;
+  color:#3A63F3;
+  font-weight: 600;
+  margin-right: auto;
+}
+.paperScore{
+  color: rgb(214, 62, 62);
+}
+.paperImgBox{
+  display: flex;
+  justify-content: center;
+}
+.forward,.back{
+  width: 40rpx;border-radius: 50%; cursor: pointer;margin-right: 10rpx;padding:10rpx;
+}
+.counterBox{
+  display: flex;
+  justify-content: center;
+  margin-top: 20rpx;
+  margin-bottom: 60rpx;
+}
+.colorBox{
+  margin-top: 8rpx;
+  color: rgb(112, 112, 112);
+}
+.colorZi{
+  color: #3A63F3;
+  font-weight: 600;
+}
+.problemFlex{
+  color:#3A63F3;
+  font-weight: 600;
+  font-size: 24rpx;
+  display: flex;
+}
+.problems{
+  border-top: 2rpx solid #ccc;
+  padding-bottom: 100rpx;
+}
+.choiceProblem{
+  padding-bottom: 20rpx;
+  margin: 20rpx 30rpx 30rpx 30rpx;
+  border-bottom: 2rpx solid #ccc;
+}
+.choiceProblemTitle{
+  color: black;
+  font-size: 30rpx;
+  margin-right: auto;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+}
+.choiceProblemAnalysis{
+  padding: 20rpx;
+  border-radius: 20rpx;
+  border: 4rpx solid #7990E0;
+  margin-bottom: 20rpx;
+}
+.choiceProblemEvaluation{
+  padding: 20rpx;
+  border-radius: 20rpx;
+  background-color: #7990E0;
+  color: #fff;
+  margin-bottom: 20rpx;
+}
+.choiceProblemQuestion{
+  padding: 20rpx;
+  border-radius: 20rpx;
+  border: 2rpx solid #ccc;
+  margin-bottom: 20rpx;
+}
+.choiceProblemOptions{
+  margin-bottom: 20rpx;
+}
+.choiceProblemOption{
+  background-color: #ECEFFE;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  margin-bottom: 15rpx;
+}
+.choiceProblemAnswer{
+  margin-bottom: 20rpx;
+  font-weight: 600;
+}
+.choiceProblemAnswerY{
+  margin-bottom: 10rpx;
+  color: #008200;
+}
+.choiceProblemAnswerX{
+  color:rgb(214, 62, 62)
+}
+.blankProblem{
+  padding-bottom: 20rpx;
+  margin: 20rpx 30rpx 30rpx 30rpx;
+  border-bottom: 2rpx solid #ccc;
+}
+.blankProblemTitle{
+  color: black;
+  font-size: 30rpx;
+  margin-right: auto;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+}
+.blankProblemQuestion{
+  padding: 20rpx;
+  border-radius: 20rpx;
+  border: 2rpx solid #ccc;
+  margin-bottom: 20rpx;
+}
+.blankProblemAnswer{
+  margin-bottom: 20rpx;
+  font-weight: 600;
+}
+.blankProblemAnswerY{
+  margin-bottom: 10rpx;
+  color: #008200;
+}
+.blankProblemAnswerX{
+  color:rgb(214, 62, 62)
+}
+.blankProblemAnalysis{
+  padding: 20rpx;
+  border-radius: 20rpx;
+  border: 4rpx solid #7990E0;
+  margin-bottom: 20rpx;
+}
+.choiceProblemEvaluation{
+  padding: 20rpx;
+  border-radius: 20rpx;
+  background-color: #7990E0;
+  color: #fff;
+  margin-bottom: 20rpx;
+}
+.color{
+  color: #3A63F3;
+  font-size: 600;
+}

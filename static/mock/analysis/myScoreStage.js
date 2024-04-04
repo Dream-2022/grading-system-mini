@@ -1,4 +1,4 @@
-let API_HOST = "http://192.168.50.14:9081/examAnalysis/my-score-stage/2";
+let API_HOST = "http://10.251.23.120:8084/examAnalysis/my-score-stage/2";
 let DEBUG = false;//切换数据入口
 var Mock = require("../../../utils/WxMock.js"); 
 var Random = Mock.Random;

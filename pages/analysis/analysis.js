@@ -159,7 +159,7 @@ Page({
     },
     historyList:[],
     stateList:[],
-
+    user: [],
     historyXDataList:[],
     historyScoreDataList:[]
   },
@@ -168,14 +168,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    sendMockWithStage(this)
-    sendMockWithHistory(this)
+    var that=this
+    wx.getStorage({
+      key: "userInfo",
+      success(res){
+        that.setData({
+          user: JSON.parse(res.data)
+        })
+        sendMockWithStage(that)
+        sendMockWithHistory(that)
+      }
+    })
     function sendMockWithHistory(that){
-      var API = require('../../static/mock/analysis/myScoreHistory.js')
-      console.log('onLoad')
-      // 使用 Mock
-      API.ajax('', function (res) {
-          console.log(res)
+      wx.request({
+        url: "http://10.251.23.120:8084/examAnalysis/my-score-history/"+that.data.user.account,
+        header:{
+          "Authorization": that.data.user.shortToken,
+          'content-type': 'application/json' // 默认值
+        },
+        method: 'GET',
+        success (res) {
+          console.log(res.data.data)
           wx.setStorage({
             key: "historyXDataList",
             data: res.data.data.map(item => item.examName),
@@ -195,15 +208,20 @@ Page({
               }
             })
           })
-      });
+        }
+      }) 
       console.log(that.data.historyList)
     }
     function sendMockWithStage(that){
-      var API = require('../../static/mock/analysis/myScoreStage.js')
-      console.log('onLoad')
-      // 使用 Mock
-      API.ajax('', function (res) {
-          console.log(res)
+      wx.request({
+        url: "http://10.251.23.120:8084/examAnalysis/my-score-stage/"+that.data.user.account,
+        header:{
+          "Authorization": that.data.user.shortToken,
+          'content-type': 'application/json' // 默认值
+        },
+        method: 'GET',
+        success (res) {
+          console.log(res.data.data)
           that.setData({
             stateList:res.data.data
           }, function () {
@@ -211,11 +229,10 @@ Page({
             wx.setStorage({
               key: "stateList",
               data: JSON.stringify(that.data.stateList),
-              success(res) {
-              }
             })
           })
-      });
+        }
+      })
       console.log(that.data.stateList)
     }
   },

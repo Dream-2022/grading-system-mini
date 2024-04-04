@@ -18,8 +18,8 @@
     </view>
   </view>
   <view class="paperBoxes">
-    <view wx:for="{{paperList}}" wx:key="item" wx:for-index="index">
-      <view class="paperBox" wx:if="{{item.state && selectValue !== '未批阅'}}">
+    <view wx:for="{{paperList}}" wx:key="item" wx:for-index="index" >
+      <view class="paperBox" wx:if="{{item.state && selectValue !== '未批阅'}}" bind:tap="paperBoxClick" data-index="{{index}}">
         <view class="paperBoxTitle">{{item.title}}</view>
         <view class="paperBoxDetail2">评语：{{item.comment}}</view>
         <view class="teacherBox">
@@ -32,7 +32,7 @@
           <view class="paperBoxSee">查看 ></view>
         </view>
       </view>
-      <view class="paperBox" wx:if="{{!item.state && selectValue !== '已批阅'}}">
+      <view class="paperBox" wx:if="{{!item.state && selectValue !== '已批阅'}}" bind:tap="noPaperBoxClick" data-index="{{index}}">
         <view class="paperBoxTitle">{{item.title}}</view>
         <view class="paperBoxDetail1">您的试卷正在批阅中，请耐心等待</view>
         <view class="teacherBox">

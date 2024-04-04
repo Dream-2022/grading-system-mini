@@ -1,3 +1,59 @@
 <view>
-  
+  <view>
+    <view class="boxTop">
+      <view class="paperTitle">{{paper.title}}</view>
+      <view class="paperScore">{{paper.score}}分</view>
+    </view>
+    <view class="paperImgBox">
+      <image style="border-radius: 10rpx; margin-right: 10rpx; width: 70%;margin-right:10rpx" mode="widthFix" src='{{paperDetail[pageNum-1].path}}'></image>
+    </view>
+    <view class="counterBox">
+      <view>
+        <image class="forward" src="../../static/img/Left.png" mode="widthFix" bind:tap="forwardClick"/>
+      </view>
+      <view class="colorBox">
+        第<text class="colorZi">{{pageNum}}</text>页,共<text class="colorZi">{{paperDetail.length}}</text>页
+      </view>
+      <view>
+        <image class="back" src="../../static/img/Right.png" mode="widthFix" bind:tap="backClick"/>
+      </view>
+    </view>
+    <view class="problems">
+      <!-- 选择题 -->
+      <view class="problemBox" wx:for="{{problemList}}" wx:key="item"  wx:for-index='index1'>
+        <view class="choiceProblem" wx:if="{{item.type=='选择题'}}">
+          <view class="problemFlex">
+            <view class="choiceProblemTitle">选择题</view>
+            <view>分值：{{item.score}}</view>
+          </view>
+          <view class="choiceProblemAnalysis"><text class="color">题目分析：</text>{{item.analyzing}}</view>
+          <view class="choiceProblemQuestion">{{item.question}}</view>
+          <view class="choiceProblemOptions" wx:for="{{item.options}}"  wx:key="option" wx:for-index='index2'>
+            <view class="choiceProblemOption">
+              {{problemList[index1].options[index2]}}
+            </view>
+          </view>
+          <view class="choiceProblemAnswer">
+            <view class="choiceProblemAnswerY">正确答案：{{item.ans}}</view>
+            <view class="choiceProblemAnswerX">学生答案：{{item.studentResponse}}</view>
+          </view>
+          <view class="choiceProblemEvaluation">{{item.evaluation}}</view>
+        </view>
+        <!-- 填空题,问答题 -->
+        <view class="blankProblem"  wx:if="{{item.type!='选择题'}}">
+          <view class="problemFlex">
+            <view class="blankProblemTitle">{{item.type}}</view>
+            <view>分值：{{item.score}}</view>
+          </view>
+          <view class="blankProblemAnalysis"><text class="color">题目分析：</text>{{item.analyzing}}</view>
+          <view class="blankProblemQuestion">{{item.question}}</view>
+          <view class="blankProblemAnswer">
+            <view class="blankProblemAnswerY">正确答案：{{item.ans}}</view>
+            <view class="blankProblemAnswerX">学生答案：{{item.studentResponse}}</view>
+          </view>
+          <view class="choiceProblemEvaluation">{{item.evaluation}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>
