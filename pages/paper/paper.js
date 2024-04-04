@@ -10,10 +10,6 @@ Page({
     selectValue:'批阅状态',
     pageNum:1
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   sendMockWithUserInfo:function(userInfo,that,condition){
     wx.request({
       url: "http://10.251.23.120:8084/examPaper/getMyEByC",
@@ -35,6 +31,9 @@ Page({
       }
     }) 
   },
+    /**
+   * 生命周期函数--监听页面加载
+   */
   async onLoad(options) {
     var that=this
     wx.getStorage({
@@ -82,7 +81,7 @@ Page({
     })
 
   },
-  //点击查询
+  //点击搜索试卷
   searchClick:function(){
     console.log(this.data.search)
     this.sendMockWithUserInfo(this.data.user,this,this.data.search)

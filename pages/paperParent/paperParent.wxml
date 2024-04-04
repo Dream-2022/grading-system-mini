@@ -2,13 +2,57 @@
   <view class="selectBigBox">
     <view class="selectBoxZi">选择小孩：</view>
     <view class="selectBox">
-      <view class="selectBar">
-        <picker mode="selector" range="{{selectArray}}"  bindchange="pickerChange">
-          <view class='picker'>{{selectValue}}</view>
+        <view class="selectBar">
+          <picker mode="selector" range="{{selectArray}}"  bindchange="pickerChange">
+            <view class='picker'>{{selectValue}}</view>
+          </picker>
+        </view>
+        <image src="../../static/img/Down.png" style="width: 28rpx; height:28rpx; margin-right: 20rpx; margin-top: 8rpx"></image>
+    </view>  
+  </view>
+  <view wx:if="{{selectValue!='选择'}}">
+    <view class="flexBox">
+      <view class="searchBox">
+        <image style="width:60rpx; margin-top: 3rpx; margin-right: 8rpx" mode="widthFix" src='../../static/tabar/search.png'></image>
+        <input  class="myinput" placeholder="搜索" value="{{searchInput}}"  bindinput="handleInput"  bindconfirm="searchInputClick"/>
+      </view>
+      <view class="selectStateBar">
+        <picker mode="selector" range="{{selectStateArray}}"  bindchange="pickerStateChange">
+          <view class='picker'>{{selectStateValue}}</view>
         </picker>
       </view>
-      <image src="../../static/img/Down.png" style="width: 28rpx; height:28rpx; margin-right: 20rpx; margin-top: 8rpx"></image>
+      <view class="searchButton" bind:tap="searchInputClick">查询</view>
     </view>
-    
+    <view class="paperBoxes">
+      <view wx:for="{{paperList}}" wx:key="item" wx:for-index="index" >
+        <view class="paperBox" wx:if="{{item.state && selectStateValue !== '未批阅'}}" bind:tap="paperBoxClick" data-index="{{index}}">
+          <view class="paperBoxTitle">{{item.title}}</view>
+          <view class="paperBoxDetail2">评语：{{item.comment}}</view>
+          <view class="teacherBox">
+            <view class="paperBoxZi2">分数：{{item.score}}分</view>
+            <view class="paperBoxScore">满分：{{item.scored}}分</view>
+          </view>
+          <view class="stateBox">
+            <view class="paperBoxState">已结束</view>
+            <view class="paperBoxTime">{{item.date}}</view>
+            <view class="paperBoxSee">查看 ></view>
+          </view>
+        </view>
+        <view class="paperBox" wx:if="{{!item.state && selectStateValue !== '已批阅'}}" bind:tap="noPaperBoxClick" data-index="{{index}}">
+          <view class="paperBoxTitle">{{item.title}}</view>
+          <view class="paperBoxDetail1">您的试卷正在批阅中，请耐心等待</view>
+          <view class="teacherBox">
+            <view class="paperBoxZi">批改人：</view>
+            <view class="paperBoxTeacher">XXX老师</view>
+          </view>
+          <view class="stateBox">
+            <view class="paperBoxState">进行中</view>
+            <view class="paperBoxSee">查看 ></view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="blankZi" wx:if="{{paperList.length == 0}}">暂无更多试卷...</view>
+    <view class="blank"> </view>
   </view>
 </veiw>
